@@ -31,7 +31,10 @@ const App = () => {
     }
     await fetch("http://localhost:10000", requestOptions)
       .then((data) => data.json())
-      .then((res) => setData(res))
+      .then((res) => {
+        console.log(res)
+        setData(res)
+      })
   }
 
   const classes = useStyles()

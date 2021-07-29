@@ -1,11 +1,10 @@
 import express from "express"
 import cors from "cors"
-import { promises as fs } from "fs"
+import { sentimentAnalysis } from "./analysis"
 
 const app = express()
-
 app.use(express.json())
-app.use(express.urlencoded())
+app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
 app.get("/", async (req, res) => {
@@ -15,9 +14,9 @@ app.get("/", async (req, res) => {
 })
 
 app.post("/", async (req, res) => {
-  console.log("SERVER", req.body)
   const { twitter, reddit, google } = req.body
-  res.json({ twitter: twitter, reddit: reddit, google: google })
+  const ans = await sentimentAnalysis()
+  res.json({ sentiment: ans.sentiment, score: ans.score })
 })
 
 app.listen(10000, () => console.log("server runing on 10000"))

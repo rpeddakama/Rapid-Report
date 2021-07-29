@@ -6,15 +6,7 @@ const Home = ({ data, getData }) => {
   const classes = useStyles()
 
   useEffect(() => {
-    // async function fetchAPI() {
-    //   const bruh = await getData()
-    //   console.log("home", bruh)
-    //   setTest(bruh.twit === false ? "TWITTER IS FALSE" : "TWITTER IS TRUE")
-    //   console.log("TEST", test)
-    // }
-    // fetchAPI()
     console.log("Home data", data)
-    //   Object.keys(data).map((name, index) => console.log("pls", name))
   }, [data])
 
   return (
