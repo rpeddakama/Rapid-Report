@@ -18,7 +18,7 @@ const App = () => {
     return data
   }
 
-  const handleSubmit = async (twitter, reddit, google) => {
+  const handleSubmit = async (twitter, reddit, google, input) => {
     console.log("handlesubmit")
     const requestOptions = {
       method: "POST",
@@ -27,6 +27,7 @@ const App = () => {
         twitter: twitter,
         reddit: reddit,
         google: google,
+        input: input,
       }),
     }
     await fetch("http://localhost:10000", requestOptions)

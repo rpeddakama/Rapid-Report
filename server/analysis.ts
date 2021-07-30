@@ -13,15 +13,13 @@ const textAnalyticsClient = new TextAnalyticsClient(
   new AzureKeyCredential(key)
 )
 
-export async function sentimentAnalysis(client = textAnalyticsClient) {
-  const sentimentInput = [
-    "I actually hate the modern nba. The amount of flopping in the sport is unbearables",
-  ]
+export async function sentimentAnalysis(sentimentInput) {
+  const client = textAnalyticsClient
   let sentimentResult
   try {
     sentimentResult = await client.analyzeSentiment(sentimentInput)
   } catch (e) {
-    console.log(e)
+    console.log("analyze sentiment error", e)
   }
   let res
   sentimentResult.forEach((document) => {

@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors"
 import { sentimentAnalysis } from "./analysis"
+import { getTweetsByUser } from "./twitter"
 
 const app = express()
 app.use(express.json())
@@ -14,9 +15,11 @@ app.get("/", async (req, res) => {
 })
 
 app.post("/", async (req, res) => {
-  const { twitter, reddit, google } = req.body
-  const ans = await sentimentAnalysis()
-  res.json({ sentiment: ans.sentiment, score: ans.score })
+  const { twitter, reddit, google, input } = req.body
+  console.log("INPUT", input)
+  const tweets = await getTweetsByUser("POTUS")
+  const analysis = await sentimentAnalysis(["mike goat"])
+  res.json({ sentiment: analysis.sentiment, score: analysis.score })
 })
 
 app.listen(10000, () => console.log("server runing on 10000"))

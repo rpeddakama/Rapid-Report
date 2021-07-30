@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core"
 
 const Sidebar = ({ handleSubmit }) => {
-  const [hashtag, setHashtag] = useState("")
+  const [input, setInput] = useState("")
   const [twitter, setTwitter] = useState(false)
   const [reddit, setReddit] = useState(false)
   const [google, setGoogle] = useState(false)
@@ -68,8 +68,8 @@ const Sidebar = ({ handleSubmit }) => {
           </FormGroup>
 
           <TextField
-            onChange={(e) => setHashtag(e.target.value)}
-            value={hashtag}
+            onChange={(e) => setInput(e.target.value)}
+            value={input}
             margin="normal"
             id="outlined-basic"
             label="Hashtag"
@@ -80,7 +80,7 @@ const Sidebar = ({ handleSubmit }) => {
             variant="contained"
             color="primary"
             type="submit"
-            onClick={() => handleSubmit(twitter, reddit, google, hashtag)}
+            onClick={() => handleSubmit(twitter, reddit, google, input)}
           >
             Submit
           </Button>
