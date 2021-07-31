@@ -1,5 +1,4 @@
 import { config } from "dotenv"
-import axios from "axios"
 config()
 import twitter from "twitter"
 var Twitter = twitter
@@ -35,28 +34,26 @@ export const getTweetsByKeyword = (keyword) => {
 export const getTweetsByUser = async (keyword) => {
   if (keyword === null) keyword = "POTUS"
   var params = { screen_name: keyword }
-  let res = ["?"]
-  await client.get(
-    "statuses/user_timeline",
-    params,
-    (error, tweets, response) => {
+  let res = []
+  return new Promise<string[]>((resolve, reject) => {
+    client.get("statuses/user_timeline", params, (error, tweets, response) => {
       console.log("THERE IS AN ERROR", error)
       if (!error) {
         for (var i = 0; i < tweets.length; i++) {
           if (tweets[i].text.substring(0, 2) !== "RT") {
             res.push(tweets[i].text)
             // console.log(tweets[i].user. name)
-            console.log(tweets[i].text)
+            //console.log(tweets[i].text)
             // console.log(
             //   "\n<------------------------------NEXT ONE---------------------------->\n"
             // )
           }
         }
       }
-    }
-  )
-  console.log("RES", res)
-  return res
+      console.log("RES has a length", res.length)
+      resolve(res)
+    })
+  })
 }
 
 //getTweetsByKeyword("charles leclerc")

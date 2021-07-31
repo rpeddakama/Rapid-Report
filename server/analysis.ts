@@ -13,7 +13,7 @@ const textAnalyticsClient = new TextAnalyticsClient(
   new AzureKeyCredential(key)
 )
 
-export async function sentimentAnalysis(sentimentInput) {
+export async function sentimentAnalysis(sentimentInput: string[]) {
   const client = textAnalyticsClient
   let sentimentResult
   try {
@@ -21,7 +21,7 @@ export async function sentimentAnalysis(sentimentInput) {
   } catch (e) {
     console.log("analyze sentiment error", e)
   }
-  let res
+  let res = []
   sentimentResult.forEach((document) => {
     console.log(`ID: ${document.id}`)
     console.log(`\tDocument Sentiment: ${document.sentiment}`)
@@ -45,10 +45,11 @@ export async function sentimentAnalysis(sentimentInput) {
         )} \tNeutral: ${sentence.confidenceScores.neutral.toFixed(2)}`
       )
     })
-    res = {
+    res.push({
+      text: sentimentInput[document.id],
       sentiment: document.sentiment,
       score: document.confidenceScores[document.sentiment],
-    }
+    })
   })
   return res
 }
