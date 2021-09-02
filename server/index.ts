@@ -15,10 +15,10 @@ app.get("/", async (req, res) => {
 })
 
 app.post("/", async (req, res) => {
-  const { twitter, reddit, google, input } = req.body
+  let { twitter, reddit, google, input } = req.body
 
   console.log("INPUT", input)
-
+  if (input === "" || input === undefined) input = "POTUS"
   const tweets = await getTweetsByUser(input)
   console.log("TWEETS", tweets)
   const analysis = await sentimentAnalysis(tweets.slice(0, 10))

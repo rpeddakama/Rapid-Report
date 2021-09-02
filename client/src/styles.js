@@ -25,6 +25,12 @@ const useStyles = makeStyles(
       flexGrow: 1,
       padding: theme.spacing(3),
     },
+    card: {
+      background: "white",
+      padding: 10,
+      display: "flex",
+      margin: 10,
+    },
   }),
   { index: 1 }
 )
