@@ -11,24 +11,28 @@ var client = new Twitter({
 })
 
 export const getTweetsByKeyword = (keyword) => {
-  var params = { q: keyword, lang: "en", result_type: "mixed", count: 5 }
+  console.log("at keywords", keyword)
+  var params = { q: keyword, lang: "en", result_type: "mixed", count: 50 }
   let res = []
-  client.get("search/tweets", params, (error, tweets, response) => {
-    console.log(error)
-    if (!error) {
-      for (var i = 0; i < tweets.statuses.length; i++) {
-        if (tweets.statuses[i].text.substring(0, 2) !== "RT") {
-          res.push(tweets.statuses[i].text)
-          console.log(tweets.statuses[i].user.name)
-          console.log(tweets.statuses[i].text)
-          console.log(
-            "\n<------------------------------NEXT ONE---------------------------->\n"
-          )
+  return new Promise<string[]>((resolve, reject) => {
+    client.get("search/tweets", params, (error, tweets, response) => {
+      console.log(error)
+      if (!error) {
+        for (var i = 0; i < tweets.statuses.length; i++) {
+          if (tweets.statuses[i].text.substring(0, 2) !== "RT") {
+            res.push(tweets.statuses[i].text)
+            // //console.log(tweets.statuses[i].user.name)
+            // //console.log(tweets.statuses[i].text)
+            // console.log(
+            //   "\n<------------------------------NEXT ONE---------------------------->\n"
+            // )
+          }
         }
       }
-    }
+      console.log("RES has a length", res.length)
+      resolve(res)
+    })
   })
-  return res
 }
 
 export const getTweetsByUser = async (keyword) => {

@@ -29,7 +29,7 @@ const Sidebar = ({ handleSubmit }) => {
     >
       <Toolbar />
       <div className={classes.drawerContainer}>
-        {/* <FormControl>
+        <FormControl>
           <Typography>Platforms</Typography>
           <FormGroup>
             <FormControlLabel
@@ -84,7 +84,7 @@ const Sidebar = ({ handleSubmit }) => {
           >
             Submit
           </Button>
-        </FormControl> */}
+        </FormControl>
       </div>
     </Drawer>
   )

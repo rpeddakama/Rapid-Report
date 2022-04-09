@@ -1,7 +1,7 @@
 import express from "express"
 import cors from "cors"
 import { sentimentAnalysis } from "./analysis"
-import { getTweetsByUser } from "./twitter"
+import { getTweetsByKeyword, getTweetsByUser } from "./twitter"
 
 const app = express()
 app.use(express.json())
@@ -19,7 +19,7 @@ app.post("/", async (req, res) => {
 
   console.log("INPUT", input)
   if (input === "" || input === undefined) input = "POTUS"
-  const tweets = await getTweetsByUser(input)
+  const tweets = await getTweetsByKeyword(input)
   console.log("TWEETS", tweets)
   const analysis = await sentimentAnalysis(tweets.slice(0, 10))
   console.log("ANALYSIS", analysis)
