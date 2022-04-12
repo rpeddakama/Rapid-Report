@@ -2,6 +2,8 @@ import express from "express"
 import cors from "cors"
 import { sentimentAnalysis } from "./analysis"
 import { getTweetsByKeyword, getTweetsByUser } from "./twitter"
+import { NewReleasesSharp } from "@material-ui/icons"
+import { getNews } from "./news"
 
 const app = express()
 app.use(express.json())
@@ -17,14 +19,16 @@ app.get("/", async (req, res) => {
 app.post("/", async (req, res) => {
   let { twitter, reddit, google, input } = req.body
 
-  console.log("INPUT", input)
-  if (input === "" || input === undefined) input = "POTUS"
-  const tweets = await getTweetsByKeyword(input)
-  console.log("TWEETS", tweets)
-  const analysis = await sentimentAnalysis(tweets.slice(0, 10))
-  console.log("ANALYSIS", analysis)
+  // console.log("INPUT", input)
+  // if (input === "" || input === undefined) input = "POTUS"
+  // const tweets = await getTweetsByKeyword(input)
+  // console.log("TWEETS", tweets)
+  // const analysis = await sentimentAnalysis(tweets.slice(0, 10))
+  // console.log("ANALYSIS", analysis)
 
-  res.json(analysis)
+  await getNews()
+
+  // res.json(analysis)
 })
 
 app.listen(10000, () => console.log("server runing on 10000"))

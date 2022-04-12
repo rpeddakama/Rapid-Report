@@ -12,7 +12,7 @@ var client = new Twitter({
 
 export const getTweetsByKeyword = (keyword) => {
   console.log("at keywords", keyword)
-  var params = { q: keyword, lang: "en", result_type: "mixed", count: 50 }
+  var params = { q: keyword, lang: "en", result_type: "popular", count: 50 }
   let res = []
   return new Promise<string[]>((resolve, reject) => {
     client.get("search/tweets", params, (error, tweets, response) => {
