@@ -9,9 +9,8 @@ import useStyles from "../../styles"
 const TopicCard = ({ topic }) => {
   const classes = useStyles()
   return (
-    <Link to={`/topicPage/${topic}`}>
-      <Card className={classes.topicCard}>
-        {/* <Link to={`/problems/${file}`}> */}
+    <Card className={classes.topicCard}>
+      <Link to={`/topicPage/${topic}`}>
         <CardActionArea>
           <CardContent>
             <Typography
@@ -19,7 +18,9 @@ const TopicCard = ({ topic }) => {
               gutterBottom
               variant="h5"
               component="h2"
-            ></Typography>
+            >
+              click me
+            </Typography>
             <Typography
               variant="body1"
               color="primary"
@@ -27,9 +28,8 @@ const TopicCard = ({ topic }) => {
             ></Typography>
           </CardContent>
         </CardActionArea>
-        {/* </Link> */}
-      </Card>
-    </Link>
+      </Link>
+    </Card>
   )
 }
 

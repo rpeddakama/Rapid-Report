@@ -31,4 +31,10 @@ app.post("/", async (req, res) => {
   res.json(analysis)
 })
 
+app.get("/topicSearch", async (req, res) => {
+  let { input } = req.body
+  const tweets = await getTweetsByKeyword(input)
+  const analysis = await sentimentAnalysis(tweets.slice(0, 10))
+})
+
 app.listen(10000, () => console.log("server runing on 10000"))
