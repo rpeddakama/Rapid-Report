@@ -41,7 +41,7 @@ const App = () => {
 
   const classes = useStyles()
   return (
-    <div className={classes.root}>
+    <React.Fragment>
       <Navbar />
       <Router>
         <Switch>
@@ -54,7 +54,7 @@ const App = () => {
           </Route>
         </Switch>
       </Router>
-    </div>
+    </React.Fragment>
   )
 }
 
