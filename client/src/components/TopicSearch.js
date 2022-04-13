@@ -1,8 +1,15 @@
 import useStyles from "../styles"
+import TopicCard from "./widgets/TopicCard"
 
 const TopicSearch = () => {
   const classes = useStyles()
-  return <h1>hello</h1>
+  return (
+    <div>
+      <TopicCard></TopicCard>
+      <TopicCard></TopicCard>
+      <TopicCard></TopicCard>
+    </div>
+  )
 }
 
 export default TopicSearch

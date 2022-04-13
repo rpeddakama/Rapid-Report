@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Typography, Container, Toolbar } from "@material-ui/core"
 import useStyles from "../styles"
-import MediaCard from "./MediaCard"
+import MediaCard from "./widgets/MediaCard"
 
 const Home = ({ data, getData }) => {
   const classes = useStyles()

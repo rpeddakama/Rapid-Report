@@ -5,7 +5,7 @@ import {
   Typography,
   Box,
 } from "@material-ui/core"
-import useStyles from "../styles"
+import useStyles from "../../styles"
 
 const MediaCard = ({ data }) => {
   const classes = useStyles()
