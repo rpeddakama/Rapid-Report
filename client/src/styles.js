@@ -31,6 +31,12 @@ const useStyles = makeStyles(
       display: "flex",
       margin: 10,
     },
+    topicCard: {
+      background: "gray",
+      padding: 10,
+      display: "flex",
+      margin: 10,
+    },
   }),
   { index: 1 }
 )

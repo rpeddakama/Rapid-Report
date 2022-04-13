@@ -49,7 +49,7 @@ const App = () => {
             <Sidebar handleSubmit={handleSubmit} />
             <Home data={data} getData={getData} />
           </Route>
-          <Route exact path="/test">
+          <Route exact path="/topicSearch">
             <TopicSearch></TopicSearch>
           </Route>
         </Switch>

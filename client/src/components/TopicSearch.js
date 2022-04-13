@@ -5,9 +5,9 @@ const TopicSearch = () => {
   const classes = useStyles()
   return (
     <div>
-      <TopicCard></TopicCard>
-      <TopicCard></TopicCard>
-      <TopicCard></TopicCard>
+      <TopicCard topic="war"></TopicCard>
+      <TopicCard topic="AI"></TopicCard>
+      <TopicCard topic="politics"></TopicCard>
     </div>
   )
 }
