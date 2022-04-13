@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar"
 import Navbar from "./components/Navbar"
 import Home from "./components/Home"
 import TopicSearch from "./components/TopicSearch"
+import TopicPage from "./components/TopicPage"
 
 const App = () => {
   const [data, setData] = useState({})
@@ -51,6 +52,9 @@ const App = () => {
           </Route>
           <Route exact path="/topicSearch">
             <TopicSearch></TopicSearch>
+          </Route>
+          <Route exact path="/topicPage/:topic">
+            <TopicPage></TopicPage>
           </Route>
         </Switch>
       </Router>

@@ -9,7 +9,7 @@ import useStyles from "../../styles"
 const TopicCard = ({ topic }) => {
   const classes = useStyles()
   return (
-    <Link to={`/topic/${topic}`}>
+    <Link to={`/topicPage/${topic}`}>
       <Card className={classes.topicCard}>
         {/* <Link to={`/problems/${file}`}> */}
         <CardActionArea>
