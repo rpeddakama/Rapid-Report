@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Sidebar from "./components/Sidebar"
 import Navbar from "./components/Navbar"
 import Home from "./components/Home"
+import TopicSearch from "./components/TopicSearch"
 
 const App = () => {
   const [data, setData] = useState({})
@@ -42,11 +43,15 @@ const App = () => {
   return (
     <div className={classes.root}>
       <Navbar />
-      <Sidebar handleSubmit={handleSubmit} />
-      <Home data={data} getData={getData} />
       <Router>
         <Switch>
-          <Route exact path="/"></Route>
+          <Route exact path="/">
+            <Sidebar handleSubmit={handleSubmit} />
+            <Home data={data} getData={getData} />
+          </Route>
+          <Route exact path="/test">
+            <TopicSearch></TopicSearch>
+          </Route>
         </Switch>
       </Router>
     </div>
