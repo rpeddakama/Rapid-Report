@@ -1,6 +1,6 @@
 const vader = require("vader-sentiment")
 
-export async function sentimentAnalysis(sentimentInput: string[]) {
+export async function vaderSentimentAnalysis(sentimentInput: string[]) {
   let res = []
   for (var inp in sentimentInput) {
     const intensity = vader.SentimentIntensityAnalyzer.polarity_scores(inp)

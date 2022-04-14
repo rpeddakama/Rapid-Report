@@ -4,6 +4,7 @@ import { sentimentAnalysis } from "./analysis"
 import { getTweetsByKeyword, getTweetsByUser } from "./twitter"
 import { NewReleasesSharp } from "@material-ui/icons"
 import { getNews } from "./news"
+import { vaderSentimentAnalysis } from "./vader"
 
 const app = express()
 app.use(express.json())
@@ -35,7 +36,8 @@ app.post("/", async (req, res) => {
 app.post("/topicSearch", async (req, res) => {
   let { input } = req.body
   const output = await getTweetsByKeyword(input)
-  const analysis = await sentimentAnalysis(output["tweets"].slice(0, 10))
+  // const analysis = await sentimentAnalysis(output["tweets"].slice(0, 10))
+  const analysis = await vaderSentimentAnalysis(output["tweets"])
 
   res.json({ output, analysis })
 })
