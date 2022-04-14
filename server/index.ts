@@ -27,7 +27,7 @@ app.post("/", async (req, res) => {
   date.setDate(date.getDate())
   var strDate = date.toISOString().split("T")[0]
 
-  const output = await getTweetsByKeyword(input, strDate)
+  const output = await getTweetsByKeyword(input, strDate, 50)
 
   // console.log("TWEETS", output["tweets"])
   const analysis = await sentimentAnalysis(output.slice(0, 10))
@@ -50,7 +50,7 @@ app.post("/topicSearch", async (req, res) => {
   let output = [],
     analysis = []
   for (var i = 0; i < past7Days.length; i++) {
-    output.push(await getTweetsByKeyword(input, past7Days[i]))
+    output.push(await getTweetsByKeyword(input, past7Days[i], 5))
     analysis.push(await vaderSentimentAnalysis(output[i]))
   }
 

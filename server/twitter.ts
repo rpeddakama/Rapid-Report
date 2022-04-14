@@ -10,13 +10,13 @@ var client = new Twitter({
   access_token_secret: process.env.twitter_access_token_secret,
 })
 
-export const getTweetsByKeyword = (keyword, date) => {
+export const getTweetsByKeyword = (keyword, date, count) => {
   console.log("at keywords", keyword)
   var params = {
     q: keyword,
     lang: "en",
     result_type: "popular",
-    count: 50,
+    count: count,
     until: date,
     after: date,
   }

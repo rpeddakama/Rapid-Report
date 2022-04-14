@@ -57,8 +57,10 @@ const data = [
     amt: 2100,
   },
 ]
+var data2 = []
+
 const Graph = ({ topic }) => {
-  const [values, setValues] = useState()
+  const [vals, setVals] = useState()
 
   useEffect(() => {
     const requestOptions = {
@@ -71,14 +73,27 @@ const Graph = ({ topic }) => {
     fetch("http://localhost:10000/topicSearch", requestOptions)
       .then((data) => data.json())
       .then((res) => {
-        setValues(res)
+        setVals(res)
         console.log("RES", res)
+        parseData(res)
       })
-      .then(() => parseData())
+    // .then(() => console.log("finished"))
+    // .then(() => parseData())
   }, [])
 
-  const parseData = () => {
+  const parseData = (values) => {
+    console.log("PARSED0", values)
+    if (!values) return
     console.log("PARSED", values)
+    for (var i = 0; i < values.length; i++) {
+      var x = 0.0
+      values[i].forEach((element) => {
+        x += element.score
+      })
+      x /= values[i].length
+      data2.push({ date: i, score: x })
+    }
+    console.log(data2[0]["score"])
   }
 
   //   console.log("VALUES", values, data[0].name)
@@ -87,32 +102,65 @@ const Graph = ({ topic }) => {
   // data[0].name = values.output.dates[0]
   // console.log(data)
   //   }
+  const testKey = [
+    { keys: "a", score: 2 },
+    { keys: "x", score: 4 },
+    { keys: "y", score: 5 },
+  ]
   return (
-    <ComposedChart
-      width={500}
-      height={300}
-      data={data}
-      margin={{
-        top: 5,
-        right: 30,
-        left: 20,
-        bottom: 5,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Line
-        type="monotone"
-        dataKey="pv"
-        stroke="#8884d8"
-        activeDot={{ r: 8 }}
-      />
-      {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
-      <Bar dataKey="pv" barSize={10} fill="#413ea0" />
-    </ComposedChart>
+    <div>
+      <ComposedChart
+        width={500}
+        height={300}
+        data={testKey}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="keys" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="score"
+          stroke="#8884d8"
+          activeDot={{ r: 8 }}
+        />
+        {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
+        {/* <Bar dataKey="pv" barSize={10} fill="#413ea0" /> */}
+      </ComposedChart>
+      {/* <h1>{vals && data2[0]["score"]}</h1> */}
+    </div>
+    // <ComposedChart
+    //   width={500}
+    //   height={300}
+    //   data={data}
+    //   margin={{
+    //     top: 5,
+    //     right: 30,
+    //     left: 20,
+    //     bottom: 5,
+    //   }}
+    // >
+    //   <CartesianGrid strokeDasharray="3 3" />
+    //   <XAxis dataKey="name" />
+    //   <YAxis />
+    //   <Tooltip />
+    //   <Legend />
+    //   <Line
+    //     type="monotone"
+    //     dataKey="pv"
+    //     stroke="#8884d8"
+    //     activeDot={{ r: 8 }}
+    //   />
+    //   {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
+    //   <Bar dataKey="pv" barSize={10} fill="#413ea0" />
+    // </ComposedChart>
   )
 }
 
