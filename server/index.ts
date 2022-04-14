@@ -35,9 +35,18 @@ app.post("/", async (req, res) => {
 
 app.post("/topicSearch", async (req, res) => {
   let { input } = req.body
+  const past7Days = [0, 1, 2, 3, 4, 5, 6].map((index) => {
+    let date = new Date()
+    date.setDate(date.getDate() - index)
+    var strDate = date.toISOString().split("T")[0]
+    return strDate
+  })
+
   const output = await getTweetsByKeyword(input)
-  // const analysis = await sentimentAnalysis(output["tweets"].slice(0, 10))
   const analysis = await vaderSentimentAnalysis(output["tweets"])
+  console.log("DATESDATES", past7Days)
+
+  // const analysis = await sentimentAnalysis(output["tweets"].slice(0, 10))
 
   res.json({ output, analysis })
 })
