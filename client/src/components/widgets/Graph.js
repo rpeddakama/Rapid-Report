@@ -1,13 +1,15 @@
-import React, { PureComponent } from "react"
+import React, { PureComponent, useState } from "react"
 import {
   LineChart,
   Line,
+  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
+  ComposedChart,
 } from "recharts"
 
 const data = [
@@ -54,35 +56,49 @@ const data = [
     amt: 2100,
   },
 ]
-const Graph = () => {
-  console.log("GRAPH MADE")
+const Graph = ({ topic }) => {
+  const [data, setData] = useState()
+
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      input: topic,
+    }),
+  }
+  fetch("http://localhost:10000/topicSearch", requestOptions)
+    .then((data) => data.json())
+    .then((res) => {
+      console.log(res)
+      setData(res)
+    })
+
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <LineChart
-        width={500}
-        height={300}
-        data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line
-          type="monotone"
-          dataKey="pv"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
-        />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-      </LineChart>
-    </ResponsiveContainer>
+    <ComposedChart
+      width={500}
+      height={300}
+      data={data}
+      margin={{
+        top: 5,
+        right: 30,
+        left: 20,
+        bottom: 5,
+      }}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="name" />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      <Line
+        type="monotone"
+        dataKey="pv"
+        stroke="#8884d8"
+        activeDot={{ r: 8 }}
+      />
+      {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
+      <Bar dataKey="pv" barSize={10} fill="#413ea0" />
+    </ComposedChart>
   )
 }
 

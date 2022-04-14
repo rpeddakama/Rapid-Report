@@ -21,9 +21,10 @@ app.post("/", async (req, res) => {
 
   console.log("INPUT", input)
   if (input === "" || input === undefined) input = "POTUS"
-  const tweets = await getTweetsByKeyword(input)
-  console.log("TWEETS", tweets)
-  const analysis = await sentimentAnalysis(tweets.slice(0, 10))
+  const output = await getTweetsByKeyword(input)
+
+  console.log("TWEETS", output["tweets"])
+  const analysis = await sentimentAnalysis(output["tweets"].slice(0, 10))
   console.log("ANALYSIS", analysis)
 
   // await getNews()
@@ -33,8 +34,10 @@ app.post("/", async (req, res) => {
 
 app.get("/topicSearch", async (req, res) => {
   let { input } = req.body
-  const tweets = await getTweetsByKeyword(input)
-  const analysis = await sentimentAnalysis(tweets.slice(0, 10))
+  const output = await getTweetsByKeyword(input)
+  const analysis = await sentimentAnalysis(output["tweets"].slice(0, 10))
+
+  res.json({ output, analysis })
 })
 
 app.listen(10000, () => console.log("server runing on 10000"))
