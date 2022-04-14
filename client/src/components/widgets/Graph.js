@@ -72,12 +72,13 @@ const Graph = ({ topic }) => {
       .then((data) => data.json())
       .then((res) => {
         setValues(res)
+        console.log("RES", res)
       })
       .then(() => parseData())
   }, [])
 
   const parseData = () => {
-    console.log("PARSED")
+    console.log("PARSED", values)
   }
 
   //   console.log("VALUES", values, data[0].name)
