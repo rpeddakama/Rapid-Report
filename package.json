@@ -5,6 +5,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "twitter": "^1.7.1"
+    "twitter": "^1.7.1",
+    "vader-sentiment": "^1.1.3"
   }
 }
