@@ -65,6 +65,3 @@ export const getTweetsByUser = async (keyword) => {
     })
   })
 }
-
-//getTweetsByKeyword("charles leclerc")
-//getTweetsByUser("charles")

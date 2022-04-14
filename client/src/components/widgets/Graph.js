@@ -1,4 +1,5 @@
-import React, { PureComponent, useState } from "react"
+import React, { PureComponent, useEffect, useState } from "react"
+import axios from "axios"
 import {
   LineChart,
   Line,
@@ -57,21 +58,13 @@ const data = [
   },
 ]
 const Graph = ({ topic }) => {
-  const [data, setData] = useState()
+  const [values, setValues] = useState()
 
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      input: topic,
-    }),
-  }
-  fetch("http://localhost:10000/topicSearch", requestOptions)
-    .then((data) => data.json())
-    .then((res) => {
-      console.log(res)
-      setData(res)
-    })
+  useEffect(() => {
+    axios
+      .post("localhost:10000/topicSearch", { topic })
+      .then(({ values }) => setValues(values))
+  }, [])
 
   return (
     <ComposedChart
