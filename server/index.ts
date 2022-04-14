@@ -22,10 +22,15 @@ app.post("/", async (req, res) => {
 
   console.log("INPUT", input)
   if (input === "" || input === undefined) input = "POTUS"
-  const output = await getTweetsByKeyword(input)
+
+  let date = new Date()
+  date.setDate(date.getDate())
+  var strDate = date.toISOString().split("T")[0]
+
+  const output = await getTweetsByKeyword(input, strDate)
 
   // console.log("TWEETS", output["tweets"])
-  const analysis = await sentimentAnalysis(output["tweets"].slice(0, 10))
+  const analysis = await sentimentAnalysis(output.slice(0, 10))
   // console.log("ANALYSIS", analysis)
 
   // await getNews()
@@ -42,13 +47,19 @@ app.post("/topicSearch", async (req, res) => {
     return strDate
   })
 
-  const output = await getTweetsByKeyword(input)
-  const analysis = await vaderSentimentAnalysis(output["tweets"])
+  let output = [],
+    analysis = []
+  for (var i = 0; i < past7Days.length; i++) {
+    output.push(await getTweetsByKeyword(input, past7Days[i]))
+    analysis.push(await vaderSentimentAnalysis(output[i]))
+  }
+
+  // analysis = await vaderSentimentAnalysis(output["tweets"])
   console.log("DATESDATES", past7Days)
 
   // const analysis = await sentimentAnalysis(output["tweets"].slice(0, 10))
 
-  res.json({ output, analysis })
+  res.json(analysis)
 })
 
 app.listen(10000, () => console.log("server runing on 10000"))

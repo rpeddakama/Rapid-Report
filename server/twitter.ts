@@ -10,17 +10,19 @@ var client = new Twitter({
   access_token_secret: process.env.twitter_access_token_secret,
 })
 
-export const getTweetsByKeyword = (keyword) => {
+export const getTweetsByKeyword = (keyword, date) => {
   console.log("at keywords", keyword)
   var params = {
     q: keyword,
     lang: "en",
     result_type: "popular",
     count: 50,
+    until: date,
+    after: date,
   }
   let texts = [],
     dates = []
-  return new Promise((resolve, reject) => {
+  return new Promise<string[]>((resolve, reject) => {
     client.get("search/tweets", params, (error, tweets, response) => {
       console.log(error)
       if (!error) {
@@ -32,7 +34,7 @@ export const getTweetsByKeyword = (keyword) => {
         }
       }
       console.log("RES has a length", texts.length)
-      resolve({ tweets: texts, dates: dates })
+      resolve(texts)
     })
   })
 }
