@@ -24,9 +24,9 @@ app.post("/", async (req, res) => {
   if (input === "" || input === undefined) input = "POTUS"
   const output = await getTweetsByKeyword(input)
 
-  console.log("TWEETS", output["tweets"])
+  // console.log("TWEETS", output["tweets"])
   const analysis = await sentimentAnalysis(output["tweets"].slice(0, 10))
-  console.log("ANALYSIS", analysis)
+  // console.log("ANALYSIS", analysis)
 
   // await getNews()
 

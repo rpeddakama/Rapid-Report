@@ -26,17 +26,8 @@ export const getTweetsByKeyword = (keyword) => {
       if (!error) {
         for (var i = 0; i < tweets.statuses.length; i++) {
           if (tweets.statuses[i].text.substring(0, 2) !== "RT") {
-            // console.log(
-            // "TESTSETSETSETSETSETSETSETSETSETSETSET",
-            // tweets.statuses[i]
-            // )
             dates.push(tweets.statuses[i].created_at)
             texts.push(tweets.statuses[i].text)
-            // //console.log(tweets.statuses[i].user.name)
-            // //console.log(tweets.statuses[i].text)
-            // console.log(
-            //   "\n<------------------------------NEXT ONE---------------------------->\n"
-            // )
           }
         }
       }
@@ -57,11 +48,6 @@ export const getTweetsByUser = async (keyword) => {
         for (var i = 0; i < tweets.length; i++) {
           if (tweets[i].text.substring(0, 2) !== "RT") {
             res.push(tweets[i].text)
-            // console.log(tweets[i].user. name)
-            //console.log(tweets[i].text)
-            // console.log(
-            //   "\n<------------------------------NEXT ONE---------------------------->\n"
-            // )
           }
         }
       }
