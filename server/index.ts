@@ -32,7 +32,7 @@ app.post("/", async (req, res) => {
   res.json(analysis)
 })
 
-app.get("/topicSearch", async (req, res) => {
+app.post("/topicSearch", async (req, res) => {
   let { input } = req.body
   const output = await getTweetsByKeyword(input)
   const analysis = await sentimentAnalysis(output["tweets"].slice(0, 10))

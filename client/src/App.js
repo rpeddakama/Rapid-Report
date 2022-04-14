@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import useStyles from "./styles"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Sidebar from "./components/Sidebar"
 import Navbar from "./components/Navbar"
@@ -35,12 +34,11 @@ const App = () => {
     await fetch("http://localhost:10000", requestOptions)
       .then((data) => data.json())
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         setData(res)
       })
   }
 
-  const classes = useStyles()
   return (
     <React.Fragment>
       <Navbar />

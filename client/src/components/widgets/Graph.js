@@ -61,11 +61,31 @@ const Graph = ({ topic }) => {
   const [values, setValues] = useState()
 
   useEffect(() => {
-    axios
-      .post("localhost:10000/topicSearch", { topic })
-      .then(({ values }) => setValues(values))
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        input: topic,
+      }),
+    }
+    fetch("http://localhost:10000/topicSearch", requestOptions)
+      .then((data) => data.json())
+      .then((res) => {
+        setValues(res)
+      })
+      .then(() => parseData())
   }, [])
 
+  const parseData = () => {
+    console.log("PARSED")
+  }
+
+  //   console.log("VALUES", values, data[0].name)
+  //   if (values) {
+  // console.log(values.output)
+  // data[0].name = values.output.dates[0]
+  // console.log(data)
+  //   }
   return (
     <ComposedChart
       width={500}
