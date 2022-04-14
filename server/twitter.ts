@@ -17,7 +17,6 @@ export const getTweetsByKeyword = (keyword) => {
     lang: "en",
     result_type: "popular",
     count: 50,
-    until: "2022-04-09",
   }
   let texts = [],
     dates = []
