@@ -13,14 +13,20 @@ var client = new Twitter({
 export const getTweetsByKeyword = (keyword) => {
   console.log("at keywords", keyword)
   var params = { q: keyword, lang: "en", result_type: "popular", count: 50 }
-  let res = []
+  let texts = [],
+    dates = []
   return new Promise<string[]>((resolve, reject) => {
     client.get("search/tweets", params, (error, tweets, response) => {
       console.log(error)
       if (!error) {
         for (var i = 0; i < tweets.statuses.length; i++) {
           if (tweets.statuses[i].text.substring(0, 2) !== "RT") {
-            res.push(tweets.statuses[i].text)
+            console.log(
+              "TESTSETSETSETSETSETSETSETSETSETSETSET",
+              tweets.statuses[i]
+            )
+            dates.push(tweets.statuses[i].created_at)
+            texts.push(tweets.statuses[i].text)
             // //console.log(tweets.statuses[i].user.name)
             // //console.log(tweets.statuses[i].text)
             // console.log(
@@ -29,8 +35,8 @@ export const getTweetsByKeyword = (keyword) => {
           }
         }
       }
-      console.log("RES has a length", res.length)
-      resolve(res)
+      console.log("RES has a length", texts.length)
+      resolve(texts)
     })
   })
 }
