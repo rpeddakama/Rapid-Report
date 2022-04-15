@@ -29,7 +29,7 @@ const Graph = ({ topic }) => {
       .then((data) => data.json())
       .then((res) => {
         setVals(res)
-        console.log("RES", res)
+        // console.log("RES", res)
         parseData(res)
       })
   }, [])
@@ -39,13 +39,21 @@ const Graph = ({ topic }) => {
     console.log("PARSED0", values)
     if (!values) return
     console.log("PARSED", values)
+
+    const past7Days = [6, 5, 4, 3, 2, 1, 0].map((index) => {
+      let date = new Date()
+      date.setDate(date.getDate() - index)
+      var strDate = date.toLocaleDateString()
+      return strDate
+    })
+
     for (var i = 0; i < values.length; i++) {
       var x = 0.0
       values[i].forEach((element) => {
         x += element.score
       })
       x /= values[i].length
-      data2.push({ date: i, score: x })
+      data2.push({ date: past7Days[i], Sentiment: x })
     }
     console.log(data2)
     setData(data2)
@@ -66,8 +74,8 @@ const Graph = ({ topic }) => {
       <h1>{/* HELLO {data.length} and {vals[0].length} */}</h1>
       {data && (
         <ComposedChart
-          width={500}
-          height={300}
+          width={800}
+          height={500}
           data={data}
           margin={{
             top: 5,
@@ -77,13 +85,13 @@ const Graph = ({ topic }) => {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
+          <XAxis dataKey="date" angle={-45} textAnchor="end" tick={false} />
           <YAxis />
           <Tooltip />
           <Legend />
           <Line
             type="monotone"
-            dataKey="score"
+            dataKey="Sentiment"
             stroke="#8884d8"
             activeDot={{ r: 8 }}
           />
