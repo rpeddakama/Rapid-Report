@@ -85,8 +85,7 @@ export const getTwitterPlaceIds = async (lat, long) => {
           }
         }
       }
-      console.log(res)
-      resolve("yo")
+      resolve(res)
     })
   })
 }
