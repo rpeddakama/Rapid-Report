@@ -74,6 +74,7 @@ export const getTwitterPlaceIds = async (lat, long) => {
     client.get("geo/reverse_geocode", params, (error, locations, response) => {
       if (error) console.log("THERE IS AN ERROR", error)
       else {
+        // console.log(locations.result.places)
         for (var i = 0; i < locations.result.places.length; i++) {
           // console.log(
           // locations.result.places[i].place_type,
@@ -81,10 +82,11 @@ export const getTwitterPlaceIds = async (lat, long) => {
           // )
           if (locations.result.places[i].place_type === "admin") {
             console.log(String(locations.result.places[i].name))
-            res = locations.result.place[i].name
+            res = locations.result.places[i].id
           }
         }
       }
+      console.log("DONE", res)
       resolve(res)
     })
   })

@@ -9,6 +9,7 @@ import {
 import { NewReleasesSharp } from "@material-ui/icons"
 import { getNews } from "./news"
 import { vaderSentimentAnalysis } from "./vader"
+import fs from "fs"
 
 const app = express()
 app.use(express.json())
@@ -93,12 +94,24 @@ app.post("/topicWordSearch", async (req, res) => {
 })
 
 app.post("/getPlaceIds", async (req, res) => {
-  let { lat, long } = req.body
-  console.log("yo")
+  // let { lat, long } = req.body
+  let states = Object.keys(req.body)
+  var obj = {}
 
-  let test = getTwitterPlaceIds(lat, long)
+  for (var i = 0; i < states.length; i++) {
+    let lat = req.body[states[i]][0]
+    let long = req.body[states[i]][1]
+    // console.log("LAT LONG FOR: ", element, lat, long)
+    let id = await getTwitterPlaceIds(lat, long)
+    obj[states[i]] = id
+  }
 
-  res.json(test)
+  const j = JSON.stringify(obj)
+  fs.writeFile("./constants/statePlaceIds.json", j, (err) => {
+    if (err) throw err
+  })
+
+  res.json("complete")
 })
 
 app.listen(10000, () => console.log("server runing on 10000"))
