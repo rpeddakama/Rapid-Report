@@ -69,15 +69,24 @@ export const getTweetsByUser = async (keyword) => {
 
 export const getTwitterPlaceIds = async (lat, long) => {
   var params = { lat: lat, long: long }
-  let res = []
-  return new Promise<string[]>((resolve, reject) => {
-    client.get("geo/reverse_geocode", params, (error, tweets, response) => {
+  let res = ""
+  return new Promise<string>((resolve, reject) => {
+    client.get("geo/reverse_geocode", params, (error, locations, response) => {
       console.log("THERE IS AN ERROR", error)
       if (!error) {
-        console.log(tweets, response)
+        for (var i = 0; i < locations.result.places.length; i++) {
+          // console.log(
+          // locations.result.places[i].place_type,
+          // locations.result.places[i].name
+          // )
+          if (locations.result.places[i].place_type === "admin") {
+            console.log(String(locations.result.places[i].name))
+            res = locations.result.place[i].name
+          }
+        }
       }
-      // console.log("RES has a length", res.length)
-      resolve(res)
+      console.log(res)
+      resolve("yo")
     })
   })
 }

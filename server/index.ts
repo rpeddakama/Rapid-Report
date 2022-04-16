@@ -1,7 +1,11 @@
 import express from "express"
 import cors from "cors"
 import { sentimentAnalysis } from "./analysis"
-import { getTweetsByKeyword, getTweetsByUser } from "./twitter"
+import {
+  getTweetsByKeyword,
+  getTweetsByUser,
+  getTwitterPlaceIds,
+} from "./twitter"
 import { NewReleasesSharp } from "@material-ui/icons"
 import { getNews } from "./news"
 import { vaderSentimentAnalysis } from "./vader"
@@ -86,6 +90,15 @@ app.post("/topicWordSearch", async (req, res) => {
   }
 
   res.json(wordAnalysis)
+})
+
+app.post("/getPlaceIds", async (req, res) => {
+  let { lat, long } = req.body
+  console.log("yo")
+
+  let test = getTwitterPlaceIds(lat, long)
+
+  res.json(test)
 })
 
 app.listen(10000, () => console.log("server runing on 10000"))
