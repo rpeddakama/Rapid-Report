@@ -10,6 +10,7 @@ import { NewReleasesSharp } from "@material-ui/icons"
 import { getNews } from "./news"
 import { vaderSentimentAnalysis } from "./vader"
 import fs from "fs"
+import { getTweetCountV2 } from "./twitter2"
 
 const app = express()
 app.use(express.json())
@@ -114,6 +115,12 @@ app.post("/getPlaceIds", async (req, res) => {
   })
 
   res.json("complete")
+})
+
+app.post("/v2Test", async (req, res) => {
+  let { input } = req.body
+  await getTweetCountV2(input)
+  res.json("done")
 })
 
 app.listen(10000, () => console.log("server runing on 10000"))
