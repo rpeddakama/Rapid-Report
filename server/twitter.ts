@@ -13,12 +13,14 @@ var client = new Twitter({
 export const getTweetsByKeyword = (keyword, date, count) => {
   console.log("at keywords", keyword)
   var params = {
+    // q: `${keyword} place:fbd6d2f5a4e4a15e`,
     q: `${keyword}`,
     lang: "en",
-    result_type: "popular",
-    count: count,
-    until: date,
-    after: date,
+    // result_type: "mixed",
+    geocode: "37.781157,-122.398720,100mi",
+    // count: count,
+    // until: date,
+    // after: date,
   }
   let texts = [],
     dates = []
@@ -26,12 +28,14 @@ export const getTweetsByKeyword = (keyword, date, count) => {
     client.get("search/tweets", params, (error, tweets, response) => {
       console.log(error)
       if (!error) {
+        console.log(tweets)
         for (var i = 0; i < tweets.statuses.length; i++) {
-          console.log(
-            "LOC: ",
-            tweets.statuses[i].user.location,
-            tweets.statuses[i].text
-          )
+          console
+            .log
+            // "LOC: "
+            // tweets.statuses[i].user.location,
+            // tweets.statuses[i].text
+            ()
           if (tweets.statuses[i].text.substring(0, 2) !== "RT") {
             dates.push(tweets.statuses[i].created_at)
             texts.push(tweets.statuses[i].text)
