@@ -96,13 +96,15 @@ app.post("/topicWordSearch", async (req, res) => {
 app.post("/getPlaceIds", async (req, res) => {
   // let { lat, long } = req.body
   let states = Object.keys(req.body)
-  var obj = {}
+  var obj = require("./constants/statePlaceIds.json")
 
   for (var i = 0; i < states.length; i++) {
     let lat = req.body[states[i]][0]
     let long = req.body[states[i]][1]
     // console.log("LAT LONG FOR: ", element, lat, long)
+    console.log(states[i])
     let id = await getTwitterPlaceIds(lat, long)
+    console.log("-----------")
     obj[states[i]] = id
   }
 
