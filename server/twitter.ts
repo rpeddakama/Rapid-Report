@@ -13,14 +13,12 @@ var client = new Twitter({
 export const getTweetsByKeyword = (keyword, date, count) => {
   console.log("at keywords", keyword)
   var params = {
-    // q: `${keyword} place:fbd6d2f5a4e4a15e`,
     q: `${keyword}`,
     lang: "en",
-    // result_type: "mixed",
-    geocode: "37.781157,-122.398720,100mi",
-    // count: count,
-    // until: date,
-    // after: date,
+    result_type: "mixed",
+    count: count,
+    until: date,
+    after: date,
   }
   let texts = [],
     dates = []
