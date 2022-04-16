@@ -1,6 +1,7 @@
 import { config } from "dotenv"
 config()
 import twitter from "twitter"
+
 var Twitter = twitter
 
 var client = new Twitter({
