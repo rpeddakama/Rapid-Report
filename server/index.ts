@@ -65,23 +65,30 @@ app.post("/topicSearch", async (req, res) => {
 app.post("/topicWordSearch", async (req, res) => {
   let { input } = req.body
 
-  let analysis = []
-
   let date = new Date()
   date.setDate(date.getDate())
   var strDate = date.toISOString().split("T")[0]
 
   let wordArr = jsonData["Topics"][input]["words"]
-  console.log(wordArr)
+  // console.log(wordArr)
+  let wordAnalysis = []
   for (var i = 0; i < wordArr.length; i++) {
-    console.log(wordArr[i])
+    let output = await getTweetsByKeyword(wordArr[i], strDate, 5)
+    let analysis = await vaderSentimentAnalysis(output)
+
+    var x = 0.0
+    analysis.forEach((element) => {
+      x += element["score"]
+    })
+    x /= analysis.length
+
+    wordAnalysis.push({ [wordArr[i]]: x })
   }
-  // let output = await getTweetsByKeyword(input, strDate, 5)
-  // analysis.push(await vaderSentimentAnalysis(output))
   console.log("HERE YO")
   // console.log(jsonData)
 
-  res.json(jsonData["Topics"]["war"]["words"][0])
+  // res.json(jsonData["Topics"]["war"]["words"][0])
+  res.json(wordAnalysis)
 })
 
 app.listen(10000, () => console.log("server runing on 10000"))
