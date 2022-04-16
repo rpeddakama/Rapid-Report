@@ -23,7 +23,7 @@ app.post("/", async (req, res) => {
   let { twitter, reddit, google, input } = req.body
 
   console.log("INPUT", input)
-  if (input === "" || input === undefined) input = "POTUS"
+  if (input === "" || input === undefined) input = "biden"
 
   let date = new Date()
   date.setDate(date.getDate())

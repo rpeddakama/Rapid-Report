@@ -13,7 +13,7 @@ var client = new Twitter({
 export const getTweetsByKeyword = (keyword, date, count) => {
   console.log("at keywords", keyword)
   var params = {
-    q: keyword,
+    q: `${keyword}`,
     lang: "en",
     result_type: "popular",
     count: count,
@@ -27,6 +27,11 @@ export const getTweetsByKeyword = (keyword, date, count) => {
       console.log(error)
       if (!error) {
         for (var i = 0; i < tweets.statuses.length; i++) {
+          console.log(
+            "LOC: ",
+            tweets.statuses[i].user.location,
+            tweets.statuses[i].text
+          )
           if (tweets.statuses[i].text.substring(0, 2) !== "RT") {
             dates.push(tweets.statuses[i].created_at)
             texts.push(tweets.statuses[i].text)
