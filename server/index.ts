@@ -15,7 +15,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
-const jsonData = require("./topicWords.json")
+const jsonData = require("./constants/topicWords.json")
 
 app.get("/", async (req, res) => {
   var twit, red, goog
