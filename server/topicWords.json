@@ -1,7 +1,13 @@
 {
-  "Topics": [
-    { "War": ["Ukraine", "Russia", "Biden", "army", "white house", "police"] },
-    { "Environment": ["fossil fuels", "green energy"] },
-    { "Economy": ["business", "science", "lifestyle", "entertainment"] }
-  ]
+  "Topics": {
+    "war": {
+      "words": ["Ukraine", "Russia", "Biden", "army", "white house", "police"]
+    },
+    "environment": {
+      "words": ["fossil fuels", "green energy", "coal", "windmills"]
+    },
+    "economy": {
+      "words": ["business", "science", "lifestyle", "entertainment"]
+    }
+  }
 }

@@ -5,12 +5,13 @@ import { getTweetsByKeyword, getTweetsByUser } from "./twitter"
 import { NewReleasesSharp } from "@material-ui/icons"
 import { getNews } from "./news"
 import { vaderSentimentAnalysis } from "./vader"
-import jsonDataImport from "./topicWords.json"
 
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
+
+const jsonData = require("./topicWords.json")
 
 app.get("/", async (req, res) => {
   var twit, red, goog
@@ -70,11 +71,17 @@ app.post("/topicWordSearch", async (req, res) => {
   date.setDate(date.getDate())
   var strDate = date.toISOString().split("T")[0]
 
+  let wordArr = jsonData["Topics"][input]["words"]
+  console.log(wordArr)
+  for (var i = 0; i < wordArr.length; i++) {
+    console.log(wordArr[i])
+  }
   // let output = await getTweetsByKeyword(input, strDate, 5)
   // analysis.push(await vaderSentimentAnalysis(output))
-  console.log("HERE YO", input)
+  console.log("HERE YO")
+  // console.log(jsonData)
 
-  res.json(input)
+  res.json(jsonData["Topics"]["war"]["words"][0])
 })
 
 app.listen(10000, () => console.log("server runing on 10000"))
