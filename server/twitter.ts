@@ -13,6 +13,8 @@ var client = new Twitter({
 export const getTweetsByKeyword = (keyword, date, count) => {
   console.log("at keywords", keyword)
   var params = {
+    //alabama: 288de3df481163e8
+    //california: fbd6d2f5a4e4a15e
     q: `${keyword}`,
     lang: "en",
     result_type: "mixed",
