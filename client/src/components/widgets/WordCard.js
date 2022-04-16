@@ -11,6 +11,13 @@ const WordCard = ({ analysis }) => {
 
   console.log("WORD CARD ANALYSIS: ", Object.keys(analysis))
 
+  const getColor = () => {
+    if (sentiment === undefined) return "#fff"
+    if (sentiment > 0.5) return "#5ce805"
+    if (sentiment < -0.5) return "#f02416"
+    else return "#ffdd00"
+  }
+
   //   setWord(Object.keys(analysis)[0])
   //   setSentiment(analysis[word])
   return (
