@@ -70,8 +70,8 @@ app.post("/topicWordSearch", async (req, res) => {
   var strDate = date.toISOString().split("T")[0]
 
   let wordArr = jsonData["Topics"][input]["words"]
-  // console.log(wordArr)
   let wordAnalysis = []
+
   for (var i = 0; i < wordArr.length; i++) {
     let output = await getTweetsByKeyword(wordArr[i], strDate, 5)
     let analysis = await vaderSentimentAnalysis(output)
@@ -84,10 +84,7 @@ app.post("/topicWordSearch", async (req, res) => {
 
     wordAnalysis.push({ [wordArr[i]]: x })
   }
-  console.log("HERE YO")
-  // console.log(jsonData)
 
-  // res.json(jsonData["Topics"]["war"]["words"][0])
   res.json(wordAnalysis)
 })
 
