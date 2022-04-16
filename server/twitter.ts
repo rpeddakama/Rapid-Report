@@ -72,8 +72,8 @@ export const getTwitterPlaceIds = async (lat, long) => {
   let res = ""
   return new Promise<string>((resolve, reject) => {
     client.get("geo/reverse_geocode", params, (error, locations, response) => {
-      console.log("THERE IS AN ERROR", error)
-      if (!error) {
+      if (error) console.log("THERE IS AN ERROR", error)
+      else {
         for (var i = 0; i < locations.result.places.length; i++) {
           // console.log(
           // locations.result.places[i].place_type,
