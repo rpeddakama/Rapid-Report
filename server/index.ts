@@ -5,6 +5,7 @@ import { getTweetsByKeyword, getTweetsByUser } from "./twitter"
 import { NewReleasesSharp } from "@material-ui/icons"
 import { getNews } from "./news"
 import { vaderSentimentAnalysis } from "./vader"
+import jsonDataImport from "./topicWords.json"
 
 const app = express()
 app.use(express.json())
@@ -56,10 +57,24 @@ app.post("/topicSearch", async (req, res) => {
 
   // analysis = await vaderSentimentAnalysis(output["tweets"])
   console.log("DATESDATES", past7Days)
-
   // const analysis = await sentimentAnalysis(output["tweets"].slice(0, 10))
-
   res.json(analysis)
+})
+
+app.post("/topicWordSearch", async (req, res) => {
+  let { input } = req.body
+
+  let analysis = []
+
+  let date = new Date()
+  date.setDate(date.getDate())
+  var strDate = date.toISOString().split("T")[0]
+
+  // let output = await getTweetsByKeyword(input, strDate, 5)
+  // analysis.push(await vaderSentimentAnalysis(output))
+  console.log("HERE YO", input)
+
+  res.json(input)
 })
 
 app.listen(10000, () => console.log("server runing on 10000"))
