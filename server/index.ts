@@ -68,7 +68,7 @@ app.post("/topicSearch", async (req, res) => {
   // analysis = await vaderSentimentAnalysis(output["tweets"])
   // console.log("DATESDATES", past7Days)
   // const analysis = await sentimentAnalysis(output["tweets"].slice(0, 10))
-  res.json(analysis)
+  res.json({ analysis: analysis, counts: counts })
 })
 
 app.post("/topicWordSearch", async (req, res) => {
