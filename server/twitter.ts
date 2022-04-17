@@ -12,7 +12,7 @@ var client = new Twitter({
 })
 
 export const getTweetsByKeyword = (keyword, date, count) => {
-  console.log("at keywords", keyword)
+  // console.log("at keywords", keyword)
   var params = {
     //alabama: 288de3df481163e8
     //california: fbd6d2f5a4e4a15e
@@ -27,7 +27,7 @@ export const getTweetsByKeyword = (keyword, date, count) => {
     dates = []
   return new Promise<string[]>((resolve, reject) => {
     client.get("search/tweets", params, (error, tweets, response) => {
-      console.log(error)
+      if (error) console.log(error)
       if (!error) {
         // console.log(tweets)
         for (var i = 0; i < tweets.statuses.length; i++) {
@@ -54,7 +54,7 @@ export const getTweetsByUser = async (keyword) => {
   let res = []
   return new Promise<string[]>((resolve, reject) => {
     client.get("statuses/user_timeline", params, (error, tweets, response) => {
-      console.log("THERE IS AN ERROR", error)
+      if (error) console.log("THERE IS AN ERROR", error)
       if (!error) {
         for (var i = 0; i < tweets.length; i++) {
           if (tweets[i].text.substring(0, 2) !== "RT") {
