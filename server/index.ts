@@ -120,10 +120,8 @@ app.post("/getPlaceIds", async (req, res) => {
   res.json("complete")
 })
 
-app.post("/v2Test", async (req, res) => {
-  let { input } = req.body
-  // await getTweetCountV2(input)
-  res.json("done")
+app.get("/sentimentByState", async (req, res) => {
+  res.json("sentiment by state done")
 })
 
 app.listen(10000, () => console.log("server runing on 10000"))
