@@ -28,7 +28,6 @@ app.get("/", async (req, res) => {
 app.post("/", async (req, res) => {
   let { twitter, reddit, google, input } = req.body
 
-  console.log("INPUT", input)
   if (input === "" || input === undefined) input = "biden"
 
   let date = new Date()
@@ -56,14 +55,18 @@ app.post("/topicSearch", async (req, res) => {
   })
 
   let output = [],
-    analysis = []
+    analysis = [],
+    counts = []
   for (var i = 0; i < past7Days.length; i++) {
     output.push(await getTweetsByKeyword(input, past7Days[i], 5))
+    counts.push(
+      await getTweetCountV2(input, past7Days[i], i === 0 ? "" : past7Days[i])
+    )
     analysis.push(await vaderSentimentAnalysis(output[i]))
   }
 
   // analysis = await vaderSentimentAnalysis(output["tweets"])
-  console.log("DATESDATES", past7Days)
+  // console.log("DATESDATES", past7Days)
   // const analysis = await sentimentAnalysis(output["tweets"].slice(0, 10))
   res.json(analysis)
 })
@@ -119,7 +122,7 @@ app.post("/getPlaceIds", async (req, res) => {
 
 app.post("/v2Test", async (req, res) => {
   let { input } = req.body
-  await getTweetCountV2(input)
+  // await getTweetCountV2(input)
   res.json("done")
 })
 
