@@ -15,7 +15,7 @@ import {
 
 const Graph = ({ topic }) => {
   const [vals, setVals] = useState()
-  const [data, setData] = useState()
+  const [sentiments, setSentiments] = useState()
 
   useEffect(() => {
     const requestOptions = {
@@ -35,10 +35,10 @@ const Graph = ({ topic }) => {
   }, [])
 
   const parseData = (values) => {
-    var data2 = []
-    console.log("PARSED0", values)
+    var data2 = [],
+      data3 = []
     if (!values) return
-    console.log("PARSED", values)
+    console.log("PRE-PARSED", values)
 
     const past7Days = [6, 5, 4, 3, 2, 1, 0].map((index) => {
       let date = new Date()
@@ -47,16 +47,20 @@ const Graph = ({ topic }) => {
       return strDate
     })
 
-    for (var i = 0; i < values.length; i++) {
+    for (var i = 0; i < values.analysis.length; i++) {
       var x = 0.0
-      values[i].forEach((element) => {
+      values.analysis[i].forEach((element) => {
         x += element.score
       })
-      x /= values[i].length
-      data2.push({ date: past7Days[i], Sentiment: x })
+      x /= values.analysis[i].length
+      data2.push({
+        date: past7Days[i],
+        sentiment: x.toFixed(3),
+        count: values.counts[i],
+      })
     }
     console.log(data2)
-    setData(data2)
+    setSentiments(data2)
   }
 
   const testKey = [
@@ -72,11 +76,11 @@ const Graph = ({ topic }) => {
   return (
     <div>
       <h1>{/* HELLO {data.length} and {vals[0].length} */}</h1>
-      {data && (
+      {sentiments && (
         <ComposedChart
           width={800}
           height={500}
-          data={data}
+          data={sentiments}
           margin={{
             top: 5,
             right: 30,
@@ -86,13 +90,22 @@ const Graph = ({ topic }) => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" angle={-45} textAnchor="end" tick={false} />
-          <YAxis />
+          <YAxis yAxisId="left" />
+          <YAxis yAxisId="right" orientation="right" />
           <Tooltip />
           <Legend />
           <Line
+            yAxisId="left"
             type="monotone"
-            dataKey="Sentiment"
+            dataKey="sentiment"
             stroke="#8884d8"
+            activeDot={{ r: 8 }}
+          />
+          <Line
+            yAxisId="right"
+            type="monotone"
+            dataKey="count"
+            stroke="#82ca9d"
             activeDot={{ r: 8 }}
           />
         </ComposedChart>
