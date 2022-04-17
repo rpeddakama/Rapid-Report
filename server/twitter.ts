@@ -93,7 +93,7 @@ export const getTwitterPlaceIds = async (lat, long) => {
   })
 }
 
-export const getSentimentByState = (keyword, placeId) => {
+export const generateSentimentByStateData = (keyword, placeId) => {
   var params = {
     q: `${keyword} place:${placeId}`,
     lang: "en",

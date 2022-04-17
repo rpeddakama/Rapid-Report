@@ -2,7 +2,7 @@ import express from "express"
 import cors from "cors"
 import { sentimentAnalysis } from "./analysis"
 import {
-  getSentimentByState,
+  generateSentimentByStateData,
   getTweetsByKeyword,
   getTweetsByUser,
   getTwitterPlaceIds,
@@ -121,14 +121,17 @@ app.post("/getPlaceIds", async (req, res) => {
   res.json("complete")
 })
 
-app.post("/sentimentByState", async (req, res) => {
+app.post("/generateSentimentByState", async (req, res) => {
   const stateJsonData = require("./constants/statePlaceIds.json"),
     { input } = req.body
   const states = Object.keys(stateJsonData)
 
   let averageSentiment = {}
   for (var i = 0; i < states.length; i++) {
-    let output = await getSentimentByState(input, stateJsonData[states[i]])
+    let output = await generateSentimentByStateData(
+      input,
+      stateJsonData[states[i]]
+    )
     let analysis = await vaderSentimentAnalysis(output)
     let sum = 0.0
     for (var j = 0; j < analysis.length; j++) sum += analysis[j].score
