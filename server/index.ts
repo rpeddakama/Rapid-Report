@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import { sentimentAnalysis } from "./analysis"
 import {
+  getSentimentByState,
   getTweetsByKeyword,
   getTweetsByUser,
   getTwitterPlaceIds,
@@ -120,8 +121,24 @@ app.post("/getPlaceIds", async (req, res) => {
   res.json("complete")
 })
 
-app.get("/sentimentByState", async (req, res) => {
-  res.json("sentiment by state done")
+app.post("/sentimentByState", async (req, res) => {
+  const stateJsonData = require("./constants/statePlaceIds.json"),
+    { input } = req.body
+  const states = Object.keys(stateJsonData)
+
+  let averageSentiment = {}
+  for (var i = 0; i < states.length; i++) {
+    let output = await getSentimentByState(input, stateJsonData[states[i]])
+    let analysis = await vaderSentimentAnalysis(output)
+    let sum = 0.0
+    for (var j = 0; j < analysis.length; j++) sum += analysis[j].score
+    sum /= analysis.length
+
+    averageSentiment[states[i]] = sum
+  }
+
+  // console.log(averageSentiment)
+  res.json(averageSentiment)
 })
 
 app.listen(10000, () => console.log("server runing on 10000"))
