@@ -127,18 +127,26 @@ app.post("/generateSentimentByState", async (req, res) => {
   const states = Object.keys(stateJsonData)
 
   let averageSentiment = {}
-  for (var i = 0; i < states.length; i++) {
+  var obj = require("./constants/stateSentimentByTopic.json")
+
+  for (let i = 0; i < states.length; i++) {
     let output = await generateSentimentByStateData(
       input,
       stateJsonData[states[i]]
     )
     let analysis = await vaderSentimentAnalysis(output)
     let sum = 0.0
-    for (var j = 0; j < analysis.length; j++) sum += analysis[j].score
+    for (let j = 0; j < analysis.length; j++) sum += analysis[j].score
     sum /= analysis.length
 
     averageSentiment[states[i]] = sum
+    obj[input] = averageSentiment
   }
+
+  const j = JSON.stringify(obj)
+  fs.writeFile("./constants/stateSentimentByTopic.json", j, (err) => {
+    if (err) throw err
+  })
 
   // console.log(averageSentiment)
   res.json(averageSentiment)
