@@ -152,4 +152,6 @@ app.post("/generateSentimentByState", async (req, res) => {
   res.json(averageSentiment)
 })
 
+app.post("/getStateSentiments", async (req, res) => {})
+
 app.listen(10000, () => console.log("server runing on 10000"))
