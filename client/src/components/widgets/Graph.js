@@ -55,8 +55,8 @@ const Graph = ({ topic }) => {
       x /= values.analysis[i].length
       data2.push({
         date: past7Days[i],
-        sentiment: x.toFixed(3),
-        count: values.counts[i],
+        Sentiment: x.toFixed(3),
+        Volume: values.counts[i],
       })
     }
     console.log(data2)
@@ -90,21 +90,36 @@ const Graph = ({ topic }) => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" angle={-45} textAnchor="end" tick={false} />
-          <YAxis yAxisId="left" />
-          <YAxis yAxisId="right" orientation="right" />
+          <YAxis
+            yAxisId="left"
+            label={{
+              value: "Average Sentiment",
+              angle: -90,
+              position: "left",
+            }}
+          />
+          <YAxis
+            yAxisId="right"
+            orientation="right"
+            label={{
+              value: "Tweet Volume",
+              angle: -90,
+              position: "right",
+            }}
+          />
           <Tooltip />
           <Legend />
           <Line
             yAxisId="left"
             type="monotone"
-            dataKey="sentiment"
+            dataKey="Sentiment"
             stroke="#8884d8"
             activeDot={{ r: 8 }}
           />
           <Line
             yAxisId="right"
             type="monotone"
-            dataKey="count"
+            dataKey="Volume"
             stroke="#82ca9d"
             activeDot={{ r: 8 }}
           />
