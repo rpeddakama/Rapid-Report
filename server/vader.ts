@@ -15,7 +15,7 @@ export async function vaderSentimentAnalysis(sentimentInput: string[]) {
       score: intensity.compound,
     })
   })
-  console.log("VADER: ", res)
+  // console.log("VADER: ", res)
   return res
 }
 
