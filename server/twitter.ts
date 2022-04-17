@@ -1,6 +1,7 @@
 import { config } from "dotenv"
 config()
 import twitter from "twitter"
+import { vaderSentimentAnalysis } from "./vader"
 
 var Twitter = twitter
 
@@ -88,6 +89,27 @@ export const getTwitterPlaceIds = async (lat, long) => {
         }
       }
       resolve(res)
+    })
+  })
+}
+
+export const getSentimentByState = (keyword, placeId) => {
+  var params = {
+    q: `${keyword} place:${placeId}`,
+    lang: "en",
+    result_type: "mixed",
+  }
+  let texts = []
+  return new Promise<string[]>((resolve, reject) => {
+    client.get("search/tweets", params, (error, tweets, response) => {
+      if (error) console.log(error)
+      if (!error) {
+        for (var i = 0; i < tweets.statuses.length; i++) {
+          texts.push(tweets.statuses[i].text)
+        }
+      }
+      console.log(`Tweets fetched from state:`, texts.length)
+      resolve(texts)
     })
   })
 }
