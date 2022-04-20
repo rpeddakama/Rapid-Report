@@ -1,15 +1,11 @@
-import React, { PureComponent, useEffect, useState } from "react"
-import axios from "axios"
+import React, { useEffect, useState } from "react"
 import {
-  LineChart,
   Line,
-  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer,
   ComposedChart,
 } from "recharts"
 

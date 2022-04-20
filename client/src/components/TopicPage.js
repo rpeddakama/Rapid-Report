@@ -32,7 +32,7 @@ const TopicPage = () => {
       {wordAnalysis.map((analysis) => (
         <WordCard analysis={analysis} />
       ))}
-      <Map />
+      <Map topic={topic} />
     </div>
   )
 }

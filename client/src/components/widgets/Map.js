@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { geoCentroid } from "d3-geo"
 import {
   ComposableMap,
@@ -7,11 +7,9 @@ import {
   Marker,
   Annotation,
 } from "react-simple-maps"
-
 import allStates from "../constants/allstates.json"
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json"
-
 const offsets = {
   VT: [50, -8],
   NH: [34, 2],
@@ -24,7 +22,22 @@ const offsets = {
   DC: [49, 21],
 }
 
-const Map = () => {
+const Map = ({ topic }) => {
+  const [sentiments, setSentiments] = useState()
+
+  useEffect(() => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        input: topic,
+      }),
+    }
+    fetch("http://localhost:10000/getStateSentiments", requestOptions)
+      .then((data) => data.json())
+      .then((res) => console.log("WASSUP", res))
+  }, [])
+
   return (
     <ComposableMap projection="geoAlbersUsa">
       <Geographies geography={geoUrl}>
