@@ -8,7 +8,7 @@ import {
   Annotation,
 } from "react-simple-maps"
 
-// import allStates from "./data/allstates.json"
+import allStates from "../constants/allstates.json"
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json"
 
@@ -45,10 +45,10 @@ const Map = () => {
             ))}
             {geographies.map((geo) => {
               const centroid = geoCentroid(geo)
-              //   const cur = allStates.find((s) => s.val === geo.id)
+              const cur = allStates.find((s) => s.val === geo.id)
               return (
                 <g key={geo.rsmKey + "-name"}>
-                  {/* {cur &&
+                  {cur &&
                     centroid[0] > -160 &&
                     centroid[0] < -67 &&
                     (Object.keys(offsets).indexOf(cur.id) === -1 ? (
@@ -67,7 +67,7 @@ const Map = () => {
                           {cur.id}
                         </text>
                       </Annotation>
-                    ))} */}
+                    ))}
                 </g>
               )
             })}
