@@ -152,6 +152,11 @@ app.post("/generateSentimentByState", async (req, res) => {
   res.json(averageSentiment)
 })
 
-app.post("/getStateSentiments", async (req, res) => {})
+app.post("/getStateSentiments", async (req, res) => {
+  let { topic } = req.body
+  var obj = require("./constants/stateSentimentByTopic.json")
+
+  res.json(obj[topic])
+})
 
 app.listen(10000, () => console.log("server runing on 10000"))
