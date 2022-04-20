@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router"
 import Graph from "./widgets/Graph"
+import Map from "./widgets/Map"
 import WordCard from "./widgets/WordCard"
 
 const TopicPage = () => {
@@ -31,6 +32,7 @@ const TopicPage = () => {
       {wordAnalysis.map((analysis) => (
         <WordCard analysis={analysis} />
       ))}
+      <Map />
     </div>
   )
 }
