@@ -8,6 +8,12 @@
     },
     "economy": {
       "words": ["business", "science", "lifestyle", "entertainment"]
+    },
+    "education": {
+      "words": ["school", "teacher", "literacy", "information"]
+    },
+    "guns": {
+      "words": ["2nd amendment", "bear arms", "gun rights", "military spending"]
     }
   }
 }
