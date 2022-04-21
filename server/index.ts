@@ -172,7 +172,6 @@ app.post("/generateSentimentByState", async (req, res) => {
     if (err) throw err
   })
 
-  // console.log(averageSentiment)
   res.json(averageSentiment)
 })
 
