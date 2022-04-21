@@ -18,8 +18,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
-const jsonData = require("./constants/topicWords.json")
-
 app.get("/", async (req, res) => {
   var twit, red, goog
   const temp = "yoyo"
@@ -79,6 +77,7 @@ app.post("/topicWordSearch", async (req, res) => {
   date.setDate(date.getDate())
   var strDate = date.toISOString().split("T")[0]
 
+  const jsonData = require("./constants/topicWords.json")
   let wordArr = jsonData["Topics"][input]["words"]
   let wordAnalysis = []
 
