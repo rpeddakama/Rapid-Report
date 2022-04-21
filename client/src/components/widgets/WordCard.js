@@ -22,7 +22,7 @@ const WordCard = ({ analysis }) => {
     <Card>
       <CardActionArea>
         <CardContent>
-          <Typography ent="p">
+          <Typography>
             <Box bgcolor={getColor()}>
               {word}; sentiment: {sentiment}
             </Box>
