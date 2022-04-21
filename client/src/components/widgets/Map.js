@@ -35,8 +35,25 @@ const Map = ({ topic }) => {
     }
     fetch("http://localhost:10000/getStateSentiments", requestOptions)
       .then((data) => data.json())
-      .then((res) => console.log("WASSUP", res))
+      .then((res) => {
+        // console.log("STATES RES", res)
+        setSentiments(res)
+      })
   }, [])
+
+  const getColor = (geo) => {
+    if (!sentiments) return
+    // console.log("GEO", geo.properties.name, sentiments)
+    var sent = sentiments[geo.properties.name]
+
+    var col
+    if (sent < -0.1) col = `rgb(${255 * -1 * sent + 60}, 0, 0)`
+    else if (sent > 0.1) col = `rgb(0, ${255 * 1 * sent + 60}, 0)`
+    else col = `rgb(255, 255, 40)`
+
+    console.log("COL", col)
+    return col
+  }
 
   return (
     <ComposableMap projection="geoAlbersUsa">
@@ -48,7 +65,7 @@ const Map = ({ topic }) => {
                 key={geo.rsmKey}
                 stroke="#FFF"
                 geography={geo}
-                fill="#DDD"
+                fill={getColor(geo)}
                 style={{
                   default: { outline: "none" },
                   hover: { outline: "none" },
