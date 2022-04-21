@@ -33,10 +33,15 @@ app.post("/", async (req, res) => {
   date.setDate(date.getDate())
   var strDate = date.toISOString().split("T")[0]
 
-  const output = await getTweetsByKeyword(input, strDate, 50)
-
+  var output, analysis
+  try {
+    output = await getTweetsByKeyword(input, strDate, 50)
+    analysis = await sentimentAnalysis(output.slice(0, 10))
+  } catch (e) {
+    console.log(e)
+    analysis = "ERROR"
+  }
   // console.log("TWEETS", output["tweets"])
-  const analysis = await sentimentAnalysis(output.slice(0, 10))
   // console.log("ANALYSIS", analysis)
 
   // await getNews()
@@ -56,12 +61,18 @@ app.post("/topicSearch", async (req, res) => {
   let output = [],
     analysis = [],
     counts = []
-  for (var i = 0; i < past7Days.length; i++) {
-    output.push(await getTweetsByKeyword(input, past7Days[i], 5))
-    counts.push(
-      await getTweetCountV2(input, past7Days[i], i === 0 ? "" : past7Days[i])
-    )
-    analysis.push(await vaderSentimentAnalysis(output[i]))
+
+  try {
+    for (var i = 0; i < past7Days.length; i++) {
+      output.push(await getTweetsByKeyword(input, past7Days[i], 5))
+      counts.push(
+        await getTweetCountV2(input, past7Days[i], i === 0 ? "" : past7Days[i])
+      )
+      analysis.push(await vaderSentimentAnalysis(output[i]))
+    }
+  } catch (e) {
+    console.log(e)
+    res.json("ERROR")
   }
 
   // analysis = await vaderSentimentAnalysis(output["tweets"])
@@ -81,17 +92,22 @@ app.post("/topicWordSearch", async (req, res) => {
   let wordArr = jsonData["Topics"][input]["words"]
   let wordAnalysis = []
 
-  for (var i = 0; i < wordArr.length; i++) {
-    let output = await getTweetsByKeyword(wordArr[i], strDate, 5)
-    let analysis = await vaderSentimentAnalysis(output)
+  try {
+    for (var i = 0; i < wordArr.length; i++) {
+      let output = await getTweetsByKeyword(wordArr[i], strDate, 5)
+      let analysis = await vaderSentimentAnalysis(output)
 
-    var x = 0.0
-    analysis.forEach((element) => {
-      x += element["score"]
-    })
-    x /= analysis.length
+      var x = 0.0
+      analysis.forEach((element) => {
+        x += element["score"]
+      })
+      x /= analysis.length
 
-    wordAnalysis.push({ [wordArr[i]]: x })
+      wordAnalysis.push({ [wordArr[i]]: x })
+    }
+  } catch (e) {
+    console.log(e)
+    res.json("ERROR")
   }
 
   res.json(wordAnalysis)
@@ -107,7 +123,12 @@ app.post("/getPlaceIds", async (req, res) => {
     let long = req.body[states[i]][1]
     // console.log("LAT LONG FOR: ", element, lat, long)
     console.log(states[i])
-    let id = await getTwitterPlaceIds(lat, long)
+    let id = ""
+    try {
+      id = await getTwitterPlaceIds(lat, long)
+    } catch (e) {
+      console.log(e)
+    }
     console.log("-----------")
     obj[states[i]] = id
   }
@@ -128,18 +149,22 @@ app.post("/generateSentimentByState", async (req, res) => {
   let averageSentiment = {}
   var obj = require("./constants/stateSentimentByTopic.json")
 
-  for (let i = 0; i < states.length; i++) {
-    let output = await generateSentimentByStateData(
-      input,
-      stateJsonData[states[i]]
-    )
-    let analysis = await vaderSentimentAnalysis(output)
-    let sum = 0.0
-    for (let j = 0; j < analysis.length; j++) sum += analysis[j].score
-    sum /= analysis.length
+  try {
+    for (let i = 0; i < states.length; i++) {
+      let output = await generateSentimentByStateData(
+        input,
+        stateJsonData[states[i]]
+      )
+      let analysis = await vaderSentimentAnalysis(output)
+      let sum = 0.0
+      for (let j = 0; j < analysis.length; j++) sum += analysis[j].score
+      sum /= analysis.length
 
-    averageSentiment[states[i]] = sum
-    obj[input] = averageSentiment
+      averageSentiment[states[i]] = sum
+      obj[input] = averageSentiment
+    }
+  } catch (e) {
+    console.log(e)
   }
 
   const j = JSON.stringify(obj)
