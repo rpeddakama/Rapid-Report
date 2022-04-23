@@ -33,7 +33,7 @@ const useStyles = makeStyles(
       margin: 10,
     },
     topicCard: {
-      background: "gray",
+      background: "#395B64",
       padding: 10,
       display: "flex",
       margin: 10,

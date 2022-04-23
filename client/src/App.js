@@ -43,8 +43,8 @@ const App = () => {
 
   return (
     <div className={classes.container}>
-      <Navbar />
       <Router>
+        <Navbar />
         <Switch>
           <Route exact path="/">
             <Sidebar handleSubmit={handleSubmit} />

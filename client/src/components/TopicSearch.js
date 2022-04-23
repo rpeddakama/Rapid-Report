@@ -1,5 +1,14 @@
 import useStyles from "../styles"
 import TopicCard from "./widgets/TopicCard"
+import {
+  Grid,
+  Card,
+  CardActionArea,
+  CardContent,
+  Typography,
+  CardActions,
+  Box,
+} from "@material-ui/core"
 
 const TopicSearch = () => {
   const classes = useStyles()
