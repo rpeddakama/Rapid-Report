@@ -16,7 +16,7 @@ import {
   ListItemText,
 } from "@material-ui/core"
 import useStyles from "../styles"
-import MediaCard from "./widgets/MediaCard"
+import MediaCard from "./widgets/NewsCard"
 import Sidebar from "./Sidebar"
 
 const NewsSearch = ({ data, getData }) => {
