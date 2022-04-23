@@ -36,7 +36,7 @@ app.post("/", async (req, res) => {
   var output, analysis
   try {
     output = await getTweetsByKeyword(input, strDate, 50)
-    analysis = await sentimentAnalysis(output.slice(0, 10))
+    analysis = await vaderSentimentAnalysis(output.slice(0, 10))
   } catch (e) {
     console.log(e)
     analysis = "ERROR"
