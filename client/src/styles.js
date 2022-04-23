@@ -31,9 +31,7 @@ const useStyles = makeStyles(
     },
     card: {
       background: "white",
-      padding: 10,
-      display: "flex",
-      margin: 10,
+      marginBottom: 20,
     },
     topicContainer: {
       display: "flex",

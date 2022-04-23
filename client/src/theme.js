@@ -8,6 +8,9 @@ const theme = createTheme({
     background: {
       default: "#F5F2E7",
     },
+    button: {
+      main: "#2666CF",
+    },
   },
   overrides: {
     MuiTouchRipple: {

@@ -25,11 +25,11 @@ const MediaCard = ({ data }) => {
   return (
     <Card className={classes.card} bgcolor="black">
       <Box bgcolor={getColor()}>
-        <CardActionArea>
-          <CardContent>
-            <Typography>{data["text"]}</Typography>
-          </CardContent>
-        </CardActionArea>
+        {/* <CardActionArea> */}
+        <CardContent>
+          <Typography>{data["text"]}</Typography>
+        </CardContent>
+        {/* </CardActionArea> */}
       </Box>
     </Card>
   )
