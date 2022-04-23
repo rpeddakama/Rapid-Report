@@ -7,8 +7,13 @@ const useStyles = makeStyles(
     root: {
       display: "flex",
     },
+    container: {},
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
+      backgroundColor: "#F5F2E7",
+    },
+    navText: {
+      color: "#000000",
     },
     drawer: {
       width: drawerWidth,
@@ -20,10 +25,6 @@ const useStyles = makeStyles(
     },
     drawerContainer: {
       overflow: "auto",
-    },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
     },
     card: {
       background: "white",

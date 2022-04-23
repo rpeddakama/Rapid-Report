@@ -12,8 +12,8 @@ const Home = ({ data, getData }) => {
   }, [data])
 
   return (
-    <div className={`root ${classes.content}`}>
-      <main className={classes.content}>
+    <div className="">
+      <main className="">
         {data.length !== undefined &&
           data.map((dat) => <MediaCard data={dat} />)}
         {data.length === undefined && (

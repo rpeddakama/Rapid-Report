@@ -4,7 +4,7 @@ import TopicCard from "./widgets/TopicCard"
 const TopicSearch = () => {
   const classes = useStyles()
   return (
-    <div>
+    <div className="">
       <TopicCard topic="war"></TopicCard>
       <TopicCard topic="AI"></TopicCard>
       <TopicCard topic="politics"></TopicCard>

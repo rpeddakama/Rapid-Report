@@ -6,7 +6,7 @@ const theme = createTheme({
       main: "#4287f5",
     },
     background: {
-      default: "#fff",
+      default: "#F5F2E7",
     },
   },
   overrides: {

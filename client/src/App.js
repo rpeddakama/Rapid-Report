@@ -5,9 +5,11 @@ import Navbar from "./components/Navbar"
 import Home from "./components/Home"
 import TopicSearch from "./components/TopicSearch"
 import TopicPage from "./components/TopicPage"
+import useStyles from "./styles"
 
 const App = () => {
   const [data, setData] = useState({})
+  const classes = useStyles()
 
   useEffect(() => {
     handleSubmit()
@@ -40,7 +42,7 @@ const App = () => {
   }
 
   return (
-    <React.Fragment>
+    <div className={classes.container}>
       <Navbar />
       <Router>
         <Switch>
@@ -56,7 +58,7 @@ const App = () => {
           </Route>
         </Switch>
       </Router>
-    </React.Fragment>
+    </div>
   )
 }
 
