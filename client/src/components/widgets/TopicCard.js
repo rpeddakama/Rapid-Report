@@ -24,7 +24,7 @@ const TopicCard = ({ topic }) => {
             {topic.toUpperCase()}
           </Typography>
         </div>
-        <img src={topicPic} />
+        <img src={topicPic} style={{ maxHeight: 90 }} />
         {/* </CardContent> */}
         {/* </CardActionArea> */}
       </Card>

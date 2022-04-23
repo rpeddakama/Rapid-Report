@@ -15,7 +15,8 @@ const TopicSearch = () => {
   return (
     <div className={classes.topicContainer}>
       <TopicCard topic="war"></TopicCard>
-      <TopicCard topic="AI"></TopicCard>
+      <TopicCard topic="education"></TopicCard>
+      <TopicCard topic="guns"></TopicCard>
       <TopicCard topic="politics"></TopicCard>
     </div>
   )
