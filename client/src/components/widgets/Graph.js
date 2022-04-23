@@ -90,6 +90,7 @@ const Graph = ({ topic }) => {
           <XAxis dataKey="date" angle={-45} textAnchor="end" tick={false} />
           <YAxis
             yAxisId="left"
+            // domain={["dataMin - 0.5", "dataMax"]}
             label={{
               value: "Average Sentiment",
               angle: -90,
@@ -112,14 +113,14 @@ const Graph = ({ topic }) => {
             type="monotone"
             dataKey="Sentiment"
             stroke="#8884d8"
-            activeDot={{ r: 8 }}
+            activeDot={{ r: 10 }}
           />
           <Line
             yAxisId="right"
             type="monotone"
             dataKey="Volume"
             stroke="#82ca9d"
-            activeDot={{ r: 8 }}
+            activeDot={{ r: 10 }}
           />
         </ComposedChart>
       )}
