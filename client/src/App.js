@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import Sidebar from "./components/Sidebar"
 import Navbar from "./components/Navbar"
-import Home from "./components/NewsSearch"
+import NewsSearch from "./components/NewsSearch"
 import TopicSearch from "./components/TopicSearch"
 import TopicPage from "./components/TopicPage"
 import useStyles from "./styles"
@@ -47,8 +47,8 @@ const App = () => {
         <Navbar />
         <Switch>
           <Route exact path="/">
-            <Sidebar handleSubmit={handleSubmit} />
-            <Home data={data} getData={getData} />
+            {/* <Sidebar handleSubmit={handleSubmit} /> */}
+            <NewsSearch data={data} getData={getData} />
           </Route>
           <Route exact path="/topicSearch">
             <TopicSearch></TopicSearch>

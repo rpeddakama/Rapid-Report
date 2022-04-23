@@ -3,7 +3,7 @@ import { Typography, Container, Toolbar } from "@material-ui/core"
 import useStyles from "../styles"
 import MediaCard from "./widgets/MediaCard"
 
-const Home = ({ data, getData }) => {
+const NewsSearch = ({ data, getData }) => {
   const classes = useStyles()
 
   useEffect(() => {
@@ -36,4 +36,4 @@ const Home = ({ data, getData }) => {
   )
 }
 
-export default Home
+export default NewsSearch
