@@ -7,7 +7,10 @@ const useStyles = makeStyles(
     root: {
       display: "flex",
     },
-    container: {},
+    container: {
+      margin: 0,
+      padding: 0,
+    },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
       backgroundColor: "#F5F2E7",
@@ -32,11 +35,25 @@ const useStyles = makeStyles(
       display: "flex",
       margin: 10,
     },
+    topicContainer: {
+      display: "flex",
+    },
     topicCard: {
       background: "#395B64",
       padding: 10,
       display: "flex",
+      flexDirection: "column",
       margin: 10,
+      width: 200,
+      height: 120,
+    },
+    topicCardTitle: {
+      fontSize: 20,
+      textDecoration: "none",
+    },
+    topicCardFirstRow: {
+      display: "flex",
+      justifyContent: "space-between",
     },
   }),
   { index: 1 }

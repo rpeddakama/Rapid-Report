@@ -1,35 +1,34 @@
 import { Link } from "react-router-dom"
+import { Image } from "@material-ui/icons"
 import {
   Card,
   Typography,
   CardContent,
   CardActionArea,
 } from "@material-ui/core"
+
 import useStyles from "../../styles"
+import logo from "../constants/imgs/war.png"
+
 const TopicCard = ({ topic }) => {
   const classes = useStyles()
+
+  let topicPic = require(`../constants/imgs/${topic}.png`).default
   return (
-    <Card className={classes.topicCard}>
-      <Link to={`/topicPage/${topic}`}>
-        <CardActionArea>
-          <CardContent>
-            <Typography
-              color="primary"
-              gutterBottom
-              variant="h5"
-              component="h2"
-            >
-              click me
-            </Typography>
-            <Typography
-              variant="body1"
-              color="primary"
-              component="p"
-            ></Typography>
-          </CardContent>
-        </CardActionArea>
-      </Link>
-    </Card>
+    <Link to={`/topicPage/${topic}`}>
+      <Card className={classes.topicCard}>
+        {/* <CardActionArea> */}
+        {/* <CardContent> */}
+        <div className={classes.topicCardFirstRow}>
+          <Typography className={classes.topicCardTitle}>
+            {topic.toUpperCase()}
+          </Typography>
+        </div>
+        <img src={topicPic} />
+        {/* </CardContent> */}
+        {/* </CardActionArea> */}
+      </Card>
+    </Link>
   )
 }
 

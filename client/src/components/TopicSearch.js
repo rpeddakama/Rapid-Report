@@ -13,7 +13,7 @@ import {
 const TopicSearch = () => {
   const classes = useStyles()
   return (
-    <div className="">
+    <div className={classes.topicContainer}>
       <TopicCard topic="war"></TopicCard>
       <TopicCard topic="AI"></TopicCard>
       <TopicCard topic="politics"></TopicCard>
