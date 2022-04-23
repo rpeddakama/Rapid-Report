@@ -28,7 +28,7 @@ const NewsSearch = ({ data, getData }) => {
   }, [data])
 
   return (
-    <div>
+    <div style={{ marginTop: 20 }}>
       {data.length !== undefined && data.map((dat) => <MediaCard data={dat} />)}
       {data.length === undefined && <h1>Fetching data</h1>}
     </div>

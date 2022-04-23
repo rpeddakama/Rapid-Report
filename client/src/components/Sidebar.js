@@ -19,8 +19,7 @@ const Sidebar = ({ handleSubmit }) => {
   const classes = useStyles()
 
   return (
-    <div style={{ width: 200, marginLeft: 20 }}>
-      <Toolbar />
+    <div style={{ width: 200, margin: 20 }}>
       <FormControl>
         <Typography>Platforms</Typography>
         <FormGroup>
