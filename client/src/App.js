@@ -47,8 +47,10 @@ const App = () => {
         <Navbar />
         <Switch>
           <Route exact path="/">
-            {/* <Sidebar handleSubmit={handleSubmit} /> */}
-            <NewsSearch data={data} getData={getData} />
+            <div style={{ display: "flex", flexWrap: "wrap" }}>
+              <Sidebar handleSubmit={handleSubmit} />
+              <NewsSearch data={data} getData={getData} />
+            </div>
           </Route>
           <Route exact path="/topicSearch">
             <TopicSearch></TopicSearch>

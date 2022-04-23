@@ -6,10 +6,18 @@ import {
   Divider,
   List,
   ListItem,
+  Drawer,
+  FormControl,
+  FormGroup,
+  FormControlLabel,
+  Switch,
+  Button,
+  TextField,
   ListItemText,
 } from "@material-ui/core"
 import useStyles from "../styles"
 import MediaCard from "./widgets/MediaCard"
+import Sidebar from "./Sidebar"
 
 const NewsSearch = ({ data, getData }) => {
   const classes = useStyles()
@@ -20,48 +28,9 @@ const NewsSearch = ({ data, getData }) => {
   }, [data])
 
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ width: 100 }}>
-        <Toolbar />
-        <Divider />
-        <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              {/* <ListItemIcon> */}
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              {/* </ListItemIcon> */}
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              {/* <ListItemIcon> */}
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              {/* </ListItemIcon> */}
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
+    <div>
       {data.length !== undefined && data.map((dat) => <MediaCard data={dat} />)}
-      {data.length === undefined && (
-        <h1>Please do something to get stuff yo</h1>
-      )}
-      {/* {Object.keys(data).map((name, index) =>
-          data[name] === false ? (
-            <h1>{name} is FALSE</h1>
-          ) : (
-            <h1>{name} is TRUE</h1>
-          )
-        )}
-        {Object.keys(data).length === 0 && (
-          <Typography paragraph>
-            Please submit a search to view results
-          </Typography>
-        )} */}
+      {data.length === undefined && <h1>Fetching data</h1>}
     </div>
   )
 }
