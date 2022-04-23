@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router"
+import useStyles from "../styles"
 import Graph from "./widgets/Graph"
 import Map from "./widgets/Map"
 import WordCard from "./widgets/WordCard"
 
 const TopicPage = () => {
   const { topic } = useParams()
-
   const [wordAnalysis, setWordAnalysis] = useState([])
+  const classes = useStyles()
 
   useEffect(() => {
     const requestOptions = {
@@ -29,9 +30,11 @@ const TopicPage = () => {
   return (
     <div>
       <Graph topic={topic} />
-      {wordAnalysis.map((analysis) => (
-        <WordCard analysis={analysis} />
-      ))}
+      <div className={classes.wordCardRow}>
+        {wordAnalysis.map((analysis) => (
+          <WordCard analysis={analysis} />
+        ))}
+      </div>
       <Map topic={topic} />
     </div>
   )

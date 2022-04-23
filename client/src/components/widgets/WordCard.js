@@ -5,9 +5,12 @@ import {
   Typography,
   Box,
 } from "@material-ui/core"
+import useStyles from "../../styles"
+
 const WordCard = ({ analysis }) => {
   const sentiment = analysis[Object.keys(analysis)[0]]
   const word = Object.keys(analysis)[0]
+  const classes = useStyles()
 
   console.log("WORD CARD ANALYSIS: ", word, sentiment)
 
@@ -18,19 +21,7 @@ const WordCard = ({ analysis }) => {
     else return "#ffdd00"
   }
 
-  return (
-    <Card>
-      <CardActionArea>
-        <CardContent>
-          <Typography>
-            <Box bgcolor={getColor()}>
-              {word}; sentiment: {sentiment}
-            </Box>
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-  )
+  return <Card className={classes.wordCard}>{word.toUpperCase()}</Card>
 }
 
 export default WordCard

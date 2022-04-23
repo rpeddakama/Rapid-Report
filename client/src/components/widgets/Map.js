@@ -8,6 +8,8 @@ import {
   Annotation,
 } from "react-simple-maps"
 import allStates from "../constants/allstates.json"
+import { CallMissedSharp } from "@material-ui/icons"
+import useStyles from "../../styles"
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json"
 const offsets = {
@@ -24,6 +26,7 @@ const offsets = {
 
 const Map = ({ topic }) => {
   const [sentiments, setSentiments] = useState()
+  const classes = useStyles()
 
   useEffect(() => {
     const requestOptions = {
@@ -56,7 +59,7 @@ const Map = ({ topic }) => {
   }
 
   return (
-    <ComposableMap projection="geoAlbersUsa">
+    <ComposableMap projection="geoAlbersUsa" className={classes.map}>
       <Geographies geography={geoUrl}>
         {({ geographies }) => (
           <>

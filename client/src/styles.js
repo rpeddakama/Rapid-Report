@@ -55,6 +55,18 @@ const useStyles = makeStyles(
       display: "flex",
       justifyContent: "space-between",
     },
+    map: {
+      width: "80%",
+    },
+    wordCardRow: {
+      display: "flex",
+    },
+    wordCard: {
+      background: "#395B64",
+      padding: 10,
+      display: "flex",
+      margin: 10,
+    },
   }),
   { index: 1 }
 )
