@@ -4,6 +4,7 @@ import useStyles from "../styles"
 import Graph from "./widgets/Graph"
 import Map from "./widgets/Map"
 import WordCard from "./widgets/WordCard"
+import { Typography } from "@material-ui/core"
 
 const TopicPage = () => {
   const { topic } = useParams()
@@ -29,6 +30,11 @@ const TopicPage = () => {
   console.log("CURRENT TOPIC IS: " + topic)
   return (
     <div className={classes.topicPage}>
+      <div style={{ display: "flex" }}>
+        <Typography className={classes.topicPageTitle}>
+          Sentiment Analysis for {topic.toUpperCase()}
+        </Typography>
+      </div>
       <Graph topic={topic} />
       <div className={classes.wordCardRow}>
         {wordAnalysis.map((analysis) => (

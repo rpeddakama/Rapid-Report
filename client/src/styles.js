@@ -42,6 +42,9 @@ const useStyles = makeStyles(
       // justifyContent: "center",
       alignItems: "center",
     },
+    topicPageTitle: {
+      fontSize: 40,
+    },
     topicCard: {
       background: "#395B64",
       padding: 10,
@@ -67,7 +70,7 @@ const useStyles = makeStyles(
       display: "flex",
     },
     wordCard: {
-      color: "white",
+      color: "black",
       padding: 10,
       display: "flex",
       margin: 10,
