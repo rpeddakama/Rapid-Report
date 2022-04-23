@@ -14,14 +14,30 @@ const WordCard = ({ analysis }) => {
 
   console.log("WORD CARD ANALYSIS: ", word, sentiment)
 
+  // const getColor = () => {
+  //   if (sentiment === undefined) return "#fff"
+  //   if (sentiment > 0.2) return "#5ce805"
+  //   if (sentiment < -0.2) return "#f02416"
+  //   else return "#ffdd00"
+  // }
+
   const getColor = () => {
-    if (sentiment === undefined) return "#fff"
-    if (sentiment > 0.2) return "#5ce805"
-    if (sentiment < -0.2) return "#f02416"
-    else return "#ffdd00"
+    var sent = sentiment
+
+    var col
+    if (sent < -0.1) col = `rgb(${255 * -1 * sent + 60}, 0, 0)`
+    else if (sent > 0.1) col = `rgb(0, ${255 * 1 * sent + 60}, 0)`
+    else col = `rgb(255, 255, 40)`
+
+    console.log("COL", col)
+    return col
   }
 
-  return <Card className={classes.wordCard}>{word.toUpperCase()}</Card>
+  return (
+    <Card className={classes.wordCard} style={{ backgroundColor: getColor() }}>
+      {word.toUpperCase()}
+    </Card>
+  )
 }
 
 export default WordCard

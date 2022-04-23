@@ -62,7 +62,7 @@ const useStyles = makeStyles(
       display: "flex",
     },
     wordCard: {
-      background: "#395B64",
+      color: "white",
       padding: 10,
       display: "flex",
       margin: 10,
