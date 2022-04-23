@@ -76,12 +76,12 @@ const Graph = ({ topic }) => {
       <h1>{/* HELLO {data.length} and {vals[0].length} */}</h1>
       {sentiments && (
         <ComposedChart
-          width={800}
-          height={500}
+          width={1200}
+          height={600}
           data={sentiments}
           margin={{
             top: 5,
-            right: 30,
+            right: 20,
             left: 20,
             bottom: 5,
           }}

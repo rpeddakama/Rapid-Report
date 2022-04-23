@@ -65,6 +65,7 @@ const useStyles = makeStyles(
       width: "80%",
     },
     wordCardRow: {
+      marginTop: 50,
       display: "flex",
     },
     wordCard: {
