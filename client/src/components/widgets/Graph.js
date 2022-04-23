@@ -8,10 +8,12 @@ import {
   Legend,
   ComposedChart,
 } from "recharts"
+import useStyles from "../../styles"
 
 const Graph = ({ topic }) => {
   const [vals, setVals] = useState()
   const [sentiments, setSentiments] = useState()
+  const classes = useStyles()
 
   useEffect(() => {
     const requestOptions = {

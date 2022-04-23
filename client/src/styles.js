@@ -38,6 +38,12 @@ const useStyles = makeStyles(
     topicContainer: {
       display: "flex",
     },
+    topicPage: {
+      display: "flex",
+      flexDirection: "column",
+      // justifyContent: "center",
+      alignItems: "center",
+    },
     topicCard: {
       background: "#395B64",
       padding: 10,

@@ -28,7 +28,7 @@ const TopicPage = () => {
 
   console.log("CURRENT TOPIC IS: " + topic)
   return (
-    <div>
+    <div className={classes.topicPage}>
       <Graph topic={topic} />
       <div className={classes.wordCardRow}>
         {wordAnalysis.map((analysis) => (
