@@ -14,6 +14,9 @@
     },
     "guns": {
       "words": ["2nd amendment", "bear arms", "gun rights", "military spending"]
+    },
+    "politics": {
+      "words": ["republican", "democrat", "congress", "house", "president"]
     }
   }
 }
