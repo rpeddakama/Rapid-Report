@@ -90,7 +90,7 @@ const Graph = ({ topic }) => {
           <XAxis dataKey="date" angle={-45} textAnchor="end" tick={false} />
           <YAxis
             yAxisId="left"
-            // domain={["dataMin - 0.5", "dataMax"]}
+            domain={["dataMin - 0.5", "dataMax"]}
             label={{
               value: "Average Sentiment",
               angle: -90,
