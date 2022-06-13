@@ -1,6 +1,7 @@
 import useStyles from "../styles"
 import { AppBar, Typography, Toolbar } from "@material-ui/core"
 import { Link } from "react-router-dom"
+import NewsletterModal from "./widgets/NewsletterModal"
 
 const Navbar = () => {
   const classes = useStyles()
@@ -34,13 +35,9 @@ const Navbar = () => {
             Topic Search
           </Typography>
         </Link>
-        <Typography
-          variant="h6"
-          className={classes.navText}
-          style={{ marginLeft: 50 }}
-        >
-          Newsletter
-        </Typography>
+        <Link>
+          <NewsletterModal></NewsletterModal>
+        </Link>
       </Toolbar>
     </AppBar>
   )
