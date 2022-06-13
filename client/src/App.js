@@ -6,6 +6,8 @@ import NewsSearch from "./components/NewsSearch"
 import TopicSearch from "./components/TopicSearch"
 import TopicPage from "./components/TopicPage"
 import useStyles from "./styles"
+import NewsletterModal from "./components/widgets/NewsletterModal"
+import "bootstrap/dist/css/bootstrap.min.css"
 
 const App = () => {
   const [data, setData] = useState({})
@@ -57,6 +59,9 @@ const App = () => {
           </Route>
           <Route exact path="/topicPage/:topic">
             <TopicPage></TopicPage>
+          </Route>
+          <Route exact path="/newsletter">
+            <NewsletterModal></NewsletterModal>
           </Route>
         </Switch>
       </Router>
