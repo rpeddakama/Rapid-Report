@@ -1,14 +1,23 @@
 import { useState } from "react"
-import { Button, Modal } from "react-bootstrap"
+import { Button, Modal, Form } from "react-bootstrap"
 import { Typography } from "@material-ui/core"
 import useStyles from "../../styles"
 
 const NewsletterModal = () => {
   const [show, setShow] = useState(false)
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
   const classes = useStyles()
+
+  const handleSubmit = () => {
+    if (name != "" && email != "") {
+      // add to firebase
+      handleClose()
+    }
+  }
 
   return (
     <>
@@ -23,18 +32,33 @@ const NewsletterModal = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Signup for our Newsletter!</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+          <Form.Group>
+            <Form.Label>Name: </Form.Label>
+            <Form.Control
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              placeholder=""
+            />
+            <Form.Label style={{ marginTop: 12 }}>Email: </Form.Label>
+            <Form.Control
+              type="text"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              placeholder=""
+            />
+          </Form.Group>
+        </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
+          <Button variant="primary" type="submit" onClick={handleSubmit}>
+            Submit
           </Button>
         </Modal.Footer>
       </Modal>
+
       <script
         src="https://unpkg.com/react/umd/react.production.min.js"
         crossorigin
