@@ -19,7 +19,7 @@ const Navbar = () => {
           className={classes.navText}
           style={{ flex: 1 }}
         >
-          Title
+          GZN
         </Typography>
         <Link to={"/"}>
           <Typography variant="h6" className={classes.navText}>
