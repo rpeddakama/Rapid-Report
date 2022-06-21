@@ -12,9 +12,19 @@ const NewsletterModal = () => {
   const handleShow = () => setShow(true)
   const classes = useStyles()
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (name != "" && email != "") {
       // add to firebase
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+        }),
+      }
+      await fetch("http://localhost:10000/signupNewsletter", requestOptions)
+
       handleClose()
     }
   }

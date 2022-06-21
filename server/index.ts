@@ -12,6 +12,7 @@ import { getNews } from "./news"
 import { vaderSentimentAnalysis } from "./vader"
 import fs from "fs"
 import { getTweetCountV2 } from "./twitter2"
+import { addToNewsletter } from "./services/firebase"
 
 const app = express()
 app.use(express.json())
@@ -182,6 +183,15 @@ app.post("/getStateSentiments", async (req, res) => {
 
   console.log(obj[input])
   res.json(obj[input])
+})
+
+app.post("/signupNewsletter", async (req, res) => {
+  const { name, email } = req.body
+  console.log("at newslettersignup", name, email)
+
+  await addToNewsletter(name, email)
+
+  res.json("done")
 })
 
 app.listen(10000, () => console.log("server runing on 10000"))
