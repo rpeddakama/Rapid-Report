@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm index.ts",
+    "start": "node index.ts",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [],
