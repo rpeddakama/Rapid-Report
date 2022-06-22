@@ -202,4 +202,4 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/client/build", "index.html"))
 })
 
-app.listen(process.env.PORT || 8000, () => console.log("server runing"))
+app.listen(process.env.PORT || 8000, () => console.log("server running"))
