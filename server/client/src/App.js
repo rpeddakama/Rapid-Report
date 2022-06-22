@@ -13,9 +13,9 @@ const App = () => {
   const [data, setData] = useState({})
   const classes = useStyles()
 
-  const URL = process.env.SERVER_URL
-
+  const URL = process.env.REACT_APP_SERVER_URL
   useEffect(() => {
+    console.log("URL IS ", URL)
     handleSubmit()
   }, [])
 

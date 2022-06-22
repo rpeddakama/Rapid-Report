@@ -14,7 +14,7 @@ const Graph = ({ topic }) => {
   const [vals, setVals] = useState()
   const [sentiments, setSentiments] = useState()
   const classes = useStyles()
-  const URL = process.env.SERVER_URL
+  const URL = process.env.REACT_APP_SERVER_URL
 
   useEffect(() => {
     const requestOptions = {

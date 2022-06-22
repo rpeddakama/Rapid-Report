@@ -10,7 +10,7 @@ const TopicPage = () => {
   const { topic } = useParams()
   const [wordAnalysis, setWordAnalysis] = useState([])
   const classes = useStyles()
-  const URL = process.env.SERVER_URL
+  const URL = process.env.REACT_APP_SERVER_URL
 
   useEffect(() => {
     const requestOptions = {

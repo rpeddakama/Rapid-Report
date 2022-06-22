@@ -7,7 +7,7 @@ const NewsletterModal = () => {
   const [show, setShow] = useState(false)
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
-  const URL = process.env.SERVER_URL
+  const URL = process.env.REACT_APP_SERVER_URL
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
