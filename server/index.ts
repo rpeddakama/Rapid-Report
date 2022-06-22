@@ -1,5 +1,7 @@
 import express from "express"
 import cors from "cors"
+import path from "path"
+import { config } from "dotenv"
 import { sentimentAnalysis } from "./analysis"
 import {
   generateSentimentByStateData,
@@ -194,4 +196,10 @@ app.post("/signupNewsletter", async (req, res) => {
   res.json("done")
 })
 
-app.listen(10000, () => console.log("server runing on 10000"))
+app.use(express.static(path.join(__dirname, "/client/build")))
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/build", "index.html"))
+})
+
+app.listen(process.env.PORT || 8000, () => console.log("server runing"))
