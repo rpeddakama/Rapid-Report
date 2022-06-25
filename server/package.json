@@ -24,5 +24,9 @@
   "devDependencies": {
     "@types/node": "^16.4.7",
     "typescript": "^4.3.5"
+  },
+  "engines": {
+    "npm": "16.4.0",
+    "node": "7.18.1"
   }
 }
