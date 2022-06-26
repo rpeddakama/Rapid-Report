@@ -7,7 +7,6 @@ import {
   getTweetsByUser,
   getTwitterPlaceIds,
 } from "./twitter"
-import { NewReleasesSharp } from "@material-ui/icons"
 import { getNews } from "./news"
 import { vaderSentimentAnalysis } from "./vader"
 import fs from "fs"
