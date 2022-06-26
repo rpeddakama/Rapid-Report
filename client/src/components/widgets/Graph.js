@@ -14,7 +14,6 @@ const Graph = ({ topic }) => {
   const [vals, setVals] = useState()
   const [sentiments, setSentiments] = useState()
   const classes = useStyles()
-  const URL = process.env.REACT_APP_SERVER_URL
 
   useEffect(() => {
     const requestOptions = {
@@ -24,7 +23,7 @@ const Graph = ({ topic }) => {
         input: topic,
       }),
     }
-    fetch(`${URL}/topicSearch`, requestOptions)
+    fetch("http://localhost:10000/topicSearch", requestOptions)
       .then((data) => data.json())
       .then((res) => {
         setVals(res)

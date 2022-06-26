@@ -13,14 +13,12 @@ const App = () => {
   const [data, setData] = useState({})
   const classes = useStyles()
 
-  const URL = process.env.REACT_APP_SERVER_URL
   useEffect(() => {
-    console.log("URL IS ", URL)
     handleSubmit()
   }, [])
 
   const getData = async () => {
-    let data = await fetch(`${URL}`).then((data) => data.json())
+    let data = await fetch("http://localhost:10000").then((data) => data.json())
     console.log("get data", data)
     return data
   }
@@ -37,7 +35,7 @@ const App = () => {
         input: input,
       }),
     }
-    await fetch(`${URL}`, requestOptions)
+    await fetch("http://localhost:10000", requestOptions)
       .then((data) => data.json())
       .then((res) => {
         // console.log(res)

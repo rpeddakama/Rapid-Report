@@ -10,7 +10,6 @@ const TopicPage = () => {
   const { topic } = useParams()
   const [wordAnalysis, setWordAnalysis] = useState([])
   const classes = useStyles()
-  const URL = process.env.REACT_APP_SERVER_URL
 
   useEffect(() => {
     const requestOptions = {
@@ -20,7 +19,7 @@ const TopicPage = () => {
         input: topic,
       }),
     }
-    fetch(`${URL}/topicWordSearch`, requestOptions)
+    fetch("http://localhost:10000/topicWordSearch", requestOptions)
       .then((data) => data.json())
       .then((res) => {
         setWordAnalysis(res)

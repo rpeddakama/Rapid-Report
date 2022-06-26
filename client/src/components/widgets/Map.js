@@ -27,7 +27,6 @@ const offsets = {
 const Map = ({ topic }) => {
   const [sentiments, setSentiments] = useState()
   const classes = useStyles()
-  const URL = process.env.REACT_APP_SERVER_URL
 
   useEffect(() => {
     const requestOptions = {
@@ -37,7 +36,7 @@ const Map = ({ topic }) => {
         input: topic,
       }),
     }
-    fetch(`${URL}/getStateSentiments`, requestOptions)
+    fetch("http://localhost:10000/getStateSentiments", requestOptions)
       .then((data) => data.json())
       .then((res) => {
         // console.log("STATES RES", res)

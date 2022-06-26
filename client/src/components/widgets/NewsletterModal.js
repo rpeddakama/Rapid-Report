@@ -7,7 +7,6 @@ const NewsletterModal = () => {
   const [show, setShow] = useState(false)
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
-  const URL = process.env.REACT_APP_SERVER_URL
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -24,7 +23,7 @@ const NewsletterModal = () => {
           email: email,
         }),
       }
-      await fetch(`${URL}/signupNewsletter`, requestOptions)
+      await fetch("http://localhost:10000/signupNewsletter", requestOptions)
 
       handleClose()
     }
