@@ -193,4 +193,8 @@ app.post("/signupNewsletter", async (req, res) => {
   res.json("done")
 })
 
-app.listen(10000, () => console.log("server runing on 10000"))
+app.get("/heroku", (req, res) => {
+  res.send("HEROKU WORKING?!")
+})
+
+app.listen(process.env.PORT || 10000, () => console.log("server runing"))

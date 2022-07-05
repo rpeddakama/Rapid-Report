@@ -19,7 +19,7 @@ const TopicPage = () => {
         input: topic,
       }),
     }
-    fetch("http://localhost:10000/topicWordSearch", requestOptions)
+    fetch("https://rapidreport.herokuapp.com/topicWordSearch", requestOptions)
       .then((data) => data.json())
       .then((res) => {
         setWordAnalysis(res)

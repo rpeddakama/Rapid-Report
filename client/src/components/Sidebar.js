@@ -22,7 +22,7 @@ const Sidebar = ({ handleSubmit }) => {
     <div style={{ width: 200, margin: 20 }}>
       <FormControl>
         <Typography>Platforms</Typography>
-        <FormGroup>
+        {/* <FormGroup>
           <FormControlLabel
             control={
               <Switch
@@ -56,7 +56,7 @@ const Sidebar = ({ handleSubmit }) => {
             }
             label="Google"
           />
-        </FormGroup>
+        </FormGroup> */}
 
         <TextField
           onChange={(e) => setInput(e.target.value)}

@@ -13,7 +13,7 @@ import logo from "../constants/imgs/war.png"
 const TopicCard = ({ topic }) => {
   const classes = useStyles()
 
-  let topicPic = require(`../constants/imgs/${topic}.png`).default
+  // let topicPic = require(`../constants/imgs/${topic}.png`).default
   return (
     <Link to={`/topicPage/${topic}`}>
       <Card className={classes.topicCard}>
@@ -24,7 +24,7 @@ const TopicCard = ({ topic }) => {
             {topic.toUpperCase()}
           </Typography>
         </div>
-        <img src={topicPic} style={{ maxHeight: 90 }} />
+        {/* <img src={topicPic} style={{ maxHeight: 90 }} /> */}
         {/* </CardContent> */}
         {/* </CardActionArea> */}
       </Card>

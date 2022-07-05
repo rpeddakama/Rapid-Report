@@ -35,6 +35,7 @@ const useStyles = makeStyles(
     },
     topicContainer: {
       display: "flex",
+      flexWrap: "wrap",
     },
     topicPage: {
       display: "flex",

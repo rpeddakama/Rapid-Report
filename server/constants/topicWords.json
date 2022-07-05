@@ -17,6 +17,19 @@
     },
     "politics": {
       "words": ["republican", "democrat", "congress", "house", "president"]
+    },
+    "activism": {
+      "words": ["riots", "protests", "social justice", "military", "politics"]
+    },
+    "foreign policy": {
+      "words": [
+        "North Korea",
+        "China",
+        "ambassador",
+        "United Nations",
+        "Russia",
+        "Ukraine"
+      ]
     }
   }
 }

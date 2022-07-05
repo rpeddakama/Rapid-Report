@@ -18,6 +18,10 @@ const TopicSearch = () => {
       <TopicCard topic="education"></TopicCard>
       <TopicCard topic="guns"></TopicCard>
       <TopicCard topic="politics"></TopicCard>
+      <TopicCard topic="environment"></TopicCard>
+      <TopicCard topic="economy"></TopicCard>
+      <TopicCard topic="activism"></TopicCard>
+      <TopicCard topic="foreign policy"></TopicCard>
     </div>
   )
 }

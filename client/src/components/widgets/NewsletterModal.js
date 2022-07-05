@@ -23,7 +23,10 @@ const NewsletterModal = () => {
           email: email,
         }),
       }
-      await fetch("http://localhost:10000/signupNewsletter", requestOptions)
+      await fetch(
+        "https://rapidreport.herokuapp.com/signupNewsletter",
+        requestOptions
+      )
 
       handleClose()
     }

@@ -23,7 +23,7 @@ const Graph = ({ topic }) => {
         input: topic,
       }),
     }
-    fetch("http://localhost:10000/topicSearch", requestOptions)
+    fetch("https://rapidreport.herokuapp.com/topicSearch", requestOptions)
       .then((data) => data.json())
       .then((res) => {
         setVals(res)

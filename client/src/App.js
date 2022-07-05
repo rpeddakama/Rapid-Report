@@ -18,7 +18,9 @@ const App = () => {
   }, [])
 
   const getData = async () => {
-    let data = await fetch("http://localhost:10000").then((data) => data.json())
+    let data = await fetch("https://rapidreport.herokuapp.com/").then((data) =>
+      data.json()
+    )
     console.log("get data", data)
     return data
   }
@@ -35,7 +37,7 @@ const App = () => {
         input: input,
       }),
     }
-    await fetch("http://localhost:10000", requestOptions)
+    await fetch("https://rapidreport.herokuapp.com/", requestOptions)
       .then((data) => data.json())
       .then((res) => {
         // console.log(res)

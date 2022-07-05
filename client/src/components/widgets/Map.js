@@ -36,7 +36,10 @@ const Map = ({ topic }) => {
         input: topic,
       }),
     }
-    fetch("http://localhost:10000/getStateSentiments", requestOptions)
+    fetch(
+      "https://rapidreport.herokuapp.com/getStateSentiments",
+      requestOptions
+    )
       .then((data) => data.json())
       .then((res) => {
         // console.log("STATES RES", res)
