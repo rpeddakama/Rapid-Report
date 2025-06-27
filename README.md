@@ -17,13 +17,12 @@ A streamlined news digest application for those who want to stay informed withou
 
 #### 🤖 AI-Powered Sentiment Analysis
 - **Real-time Twitter Sentiment Tracking** - Analyzes public opinion on trending topics
-- **Sentiment Scoring** - Provides numerical sentiment scores (-1 to +1) for any queried topic
+- **Sentiment Scoring** - Provides numerical sentiment scores (-1 to +1) for any queried topic (vader)
 - **Multi-dimensional Analysis** - Evaluates emotion, subjectivity, and opinion intensity
 
 #### 📋 Browse Trending Topics
 - Access the curated list of relevant, trending topics
-- Topics are automatically detected and ranked by relevance and engagement
-- Get real-time sentiment scores for each topic
+- Topics are automatically detected and ranked by relevance and engagement (likes, retweets, hashtags, etc.)
 - **Historical Trend Visualization** - Interactive graphs showing sentiment changes over time
 
 #### 🔍 Custom Sentiment Queries  
